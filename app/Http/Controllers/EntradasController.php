@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entradas;
 use Illuminate\Http\Request;
+use App\Models\Categorias;
 
 class EntradasController extends Controller
 {
@@ -28,8 +29,18 @@ class EntradasController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+    
     {
-        //
+      $parametros = [
+        "tituloventana" => "Recetazas | Últimas entradas",
+        "datos" => null,
+        "mensajes" => [],
+        "paginacion" => null
+      ];
+      $categorias = Categorias::all();
+        return view('entradas.create')
+        ->with('parametros', $parametros)
+        ->with('categorias', $categorias);
     }
 
     /**
@@ -37,7 +48,24 @@ class EntradasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $request->validate([
+        'titulo' => 'required|max:15',
+        'descripcion' => 'required|max:300',
+        'fecha' => 'required|date',
+        'imagen' => 'nullable',
+        'categoria' => 'required',
+        'usuario' => 'required'
+      ]);
+
+      $entrada = new Entradas();
+      $entrada->titulo = $request->input('titulo');
+      // TODO: RELLENAR
+
+      $entrada->save(); //salva todo
+      $mensaje = "Entrada añadida con éxito";
+      require view('/')
+      ->with('mensaje', $mensaje);
+      
     }
 
     /**

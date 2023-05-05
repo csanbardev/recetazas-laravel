@@ -5,14 +5,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>@yield('titulo')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="{{url('/')}}">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{url('/create')}}">Añadir</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Listado Usuario</a>
+      </li>
+    </ul>
+  </nav>
 
   @yield('contenido')
+
+  <footer class="page-footer font-small blue mt-4">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2022 Copyright:
+      <a href="/"> Recetazas.com</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
