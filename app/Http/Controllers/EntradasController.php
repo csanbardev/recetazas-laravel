@@ -52,20 +52,24 @@ class EntradasController extends Controller
         'titulo' => 'required|max:15',
         'descripcion' => 'required|max:300',
         'fecha' => 'required|date',
-        'imagen' => 'nullable',
+        'imagen' => 'required|max:20',
         'categoria' => 'required',
         'usuario' => 'required'
       ]);
 
       $entrada = new Entradas();
       $entrada->titulo = $request->input('titulo');
-      // TODO: RELLENAR
+      $entrada->descripcion = $request->input('descripcion');
+      $entrada->fecha = $request->input('fecha');
+      $entrada->imagen = "imagen";
+      $entrada->categoria_id = $request->input('categoria');
+      $entrada->usuario_id = $request->input('usuario');
+      
 
       $entrada->save(); //salva todo
       $mensaje = "Entrada añadida con éxito";
-      require view('/')
+      return view('entradas.mensaje')
       ->with('mensaje', $mensaje);
-      
     }
 
     /**

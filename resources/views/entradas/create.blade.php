@@ -3,6 +3,7 @@
 
 @section('contenido')
     <div class="container center">
+      
       @if($errors->any())
       <div class="alert alert-danger alert-dismissible fade show">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -18,17 +19,17 @@
             @csrf
 
             <label for="titulo">Título
-                <input name="txttitulo" class="form-control" type="text" value="{{old('titulo')}}">
+                <input name="titulo" class="form-control" type="text" value="{{old('titulo')}}">
             </label>
             <br>
             <label for="descripcion">Descripción
-                <textarea name="txtdescripcion" class="form-control" name="" id="txtdescripcion" cols="30" rows="10">
+                <textarea name="descripcion" class="form-control" name="" id="descripcion" cols="30" rows="10">
         {{old('descripcion')}}
       </textarea>
             </label>
             <br>
             <label for="fecha">Inserta la fecha
-                <input name="dtfecha" class="form-control" type="date" name="dtfecha" id="" value="{{old('fecha')}}">
+                <input name="fecha" class="form-control" type="date" id="" value="{{old('fecha')}}">
                 
 
             </label>
@@ -38,6 +39,7 @@
                 @isset($parametros['errores']['imagen']) <div class="alert alert-danger">{{$parametros['errores']['imagen']}}</div>@endisset
             </label>
             <br>
+
             
             <label for="categoria">
               <select name="categoria" id="" class="form-select">
@@ -49,6 +51,7 @@
             </label>
             <br>
             <br>
+            <input type="hidden"  value="1" name="usuario">
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
     </div>

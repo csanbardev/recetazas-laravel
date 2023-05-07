@@ -1,14 +1,12 @@
 @extends('layout/template')
-
+@section('titulo', 'Recetazas | Inicio')
 @section('contenido')
     
 
   <div class="container center">
 
 
-    @foreach ($parametros["mensajes"] as $mensaje)
-    <div class="alert alert-{{$mensaje['tipo']}}">{{$mensaje["mensaje"]}}</div>
-    @endforeach
+    
     <h1>Todas las entradas</h1>
     <br>
     <div class="dropdown" {{$parametros['datos'] == null ? 'style="display: none"' : '' }} >
