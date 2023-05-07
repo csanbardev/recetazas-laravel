@@ -52,24 +52,33 @@ class EntradasController extends Controller
         'titulo' => 'required|max:15',
         'descripcion' => 'required|max:300',
         'fecha' => 'required|date',
-        'imagen' => 'required|max:20',
+        'imagen' => 'required',
         'categoria' => 'required',
         'usuario' => 'required'
       ]);
 
       $entrada = new Entradas();
+
+      if($request->hasFile('imagen')){
+        $file = $request->file('imagen');
+        $destino = "images/";
+        $nombreImagen = time().'-'.$file->getClientOriginalName();
+        $uploadSuccess = $request->file('imagen')->move($destino, $nombreImagen);
+
+      }
+
+
       $entrada->titulo = $request->input('titulo');
       $entrada->descripcion = $request->input('descripcion');
       $entrada->fecha = $request->input('fecha');
-      $entrada->imagen = "imagen";
+      $entrada->imagen = $nombreImagen;
       $entrada->categoria_id = $request->input('categoria');
       $entrada->usuario_id = $request->input('usuario');
       
 
       $entrada->save(); //salva todo
       $mensaje = "Entrada añadida con éxito";
-      return view('entradas.mensaje')
-      ->with('mensaje', $mensaje);
+      return redirect()->action([EntradasController::class, 'index']);
     }
 
     /**
