@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EntradasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -25,6 +26,8 @@ Route::post('/create', [EntradasController::class, 'store'])->middleware('auth')
 
 Route::resource('/user', UserController::class)
 ->middleware('auth');
+
+Route::get('/admin', [AdminController::class, 'index']);
 
 
 Route::get('/dashboard', function () {
