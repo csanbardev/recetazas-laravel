@@ -17,11 +17,11 @@ return new class extends Migration
           $table->string('imagen', 100);
           $table->string('descripcion', 300);
           $table->date('fecha');
-          $table->unsignedInteger('usuario_id');
+          $table->unsignedBigInteger('usuario_id');
           $table->unsignedInteger('categoria_id');
           $table->timestamps();
 
-          $table->foreign('usuario_id')->references('id')->on('usuarios');
+          $table->foreign('usuario_id')->references('id')->on('users');
           $table->foreign('categoria_id')->references('id')->on('categorias');
         });
     }

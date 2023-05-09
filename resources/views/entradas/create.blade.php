@@ -15,7 +15,7 @@
       </div>
       @endif
 
-        <form action="{{url('/')}}" method="POST" enctype="multipart/form-data">
+        <form action="{{url('/create')}}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <label for="titulo">Título
@@ -51,7 +51,7 @@
             </label>
             <br>
             <br>
-            <input type="hidden"  value="1" name="usuario">
+            <input type="hidden"  value="{{auth()->user()->id}}" name="usuario">
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
     </div>

@@ -38,6 +38,7 @@ class EntradasController extends Controller
         "paginacion" => null
       ];
       $categorias = Categorias::all();
+
         return view('entradas.create')
         ->with('parametros', $parametros)
         ->with('categorias', $categorias);
@@ -86,7 +87,8 @@ class EntradasController extends Controller
      */
     public function show(Entradas $entradas)
     {
-        //
+        return view('entradas.detalle')
+        ->with('entradas', $entradas);
     }
 
     /**

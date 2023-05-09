@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\EntradasController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,4 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/', EntradasController::class);
+Route::get('/', [EntradasController::class, 'index']);
+
+Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show');
+
+Route::get('/create', [EntradasController::class, 'create'])->middleware('auth');
+Route::post('/create', [EntradasController::class, 'store'])->middleware('auth');
+
+Route::resource('/user', UserController::class)
+->middleware('auth');
+
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__.'/auth.php';

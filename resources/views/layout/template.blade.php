@@ -20,7 +20,7 @@
         <a class="nav-link" href="{{url('/create')}}">Añadir</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Listado Usuario</a>
+        <a class="nav-link" href="{{url('/user')}}">Listado Usuario</a>
       </li>
     </ul>
   </nav>
