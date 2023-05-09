@@ -13,7 +13,7 @@
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="{{url('/')}}">Inicio</a>
       </li>
       <li class="nav-item">
@@ -27,7 +27,7 @@
 
   @yield('contenido')
 
-  <footer class="page-footer font-small blue mt-4 fixed-bottom">
+  <footer class="page-footer font-small blue mt-4">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2022 Copyright:

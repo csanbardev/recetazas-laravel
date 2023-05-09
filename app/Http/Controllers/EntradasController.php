@@ -14,16 +14,11 @@ class EntradasController extends Controller
      */
     public function index()
     {
-        $entradas = Entradas::all();
-        $parametros = [
-          "tituloventana" => "Recetazas | Últimas entradas",
-          "datos" => $entradas,
-          "mensajes" => [],
-          "paginacion" => null
-        ];
+        $entradas = Entradas::orderBy('fecha', 'desc')->paginate(6);
+       
 
         return view('entradas.inicio')
-        ->with('parametros', $parametros);
+        ->with('entradas', $entradas);
     }
 
     /**

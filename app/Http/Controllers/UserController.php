@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $entradas = Entradas::where('usuario_id',auth()->user()->id)->latest('fecha')->paginate();
+        $entradas = Entradas::where('usuario_id',auth()->user()->id)->latest('fecha')->paginate(6);
         
         return view('user.entradas')
         ->with('entradas', $entradas);

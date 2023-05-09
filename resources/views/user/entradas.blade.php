@@ -27,7 +27,37 @@
           <span class="badge badge-primary">Autor: {{$dato->nick}} </span><br>
           <span class="badge badge-secondary">{{$dato->nombre}} </span>
           <span class="badge badge-secondary">{{date("d-m-Y", strtotime($dato->fecha))}} </span>
-          <a href="{{route('entradas.show',$dato)}}">Detalle</a>
+          <div class="pt-4">
+            <a href="{{route('entradas.show',$dato)}}" class="btn btn-secondary">Detalle</a>
+            <a href=<?= 'index.php?accion=actEntrada&id=' . $dato['id'] ?> class="btn btn-secondary">Editar</a>
+            <a class="btn btn-danger" data-toggle="modal" data-target=<?= '#modal-' . $dato['id'] ?>>Eliminar</a>
+          </div>
+          
+        </div>
+      </div>
+      <!-- Ventana modal -->
+      <div class="modal" id=<?= 'modal-' . $dato['id'] ?>>
+        <div class="modal-dialog">
+          <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Eliminar entrada</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+              ¿Seguro que quieres borrar esta entrada?
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <a class="btn btn-danger" href=<?= 'index.php?accion=delEntrada&id=' . $dato['id'] ?>>Aceptar</a>
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+            </div>
+
+          </div>
         </div>
       </div>
 
