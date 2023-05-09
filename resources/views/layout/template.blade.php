@@ -27,7 +27,7 @@
 
   @yield('contenido')
 
-  <footer class="page-footer font-small blue mt-4">
+  <footer class="page-footer font-small blue mt-4 fixed-bottom">
 
     <!-- Copyright -->
     <div class="footer-copyright text-center py-3">© 2022 Copyright:

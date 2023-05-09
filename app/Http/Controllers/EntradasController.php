@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Entradas;
 use Illuminate\Http\Request;
 use App\Models\Categorias;
+use App\Models\User;
 
 class EntradasController extends Controller
 {
@@ -87,8 +88,10 @@ class EntradasController extends Controller
      */
     public function show(Entradas $entradas)
     {
-        return view('entradas.detalle')
-        ->with('entradas', $entradas);
+      $usuario = User::find($entradas->usuario_id);
+      $categoria = Categorias::find($entradas->categoria_id);
+
+        return view('entradas.detalle', compact('entradas', 'usuario', 'categoria'));
     }
 
     /**

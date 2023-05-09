@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Entradas;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -40,7 +41,9 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $usuario = User::where('id', $id);
+
+        return $usuario;
     }
 
     /**
