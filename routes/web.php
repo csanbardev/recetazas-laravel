@@ -24,6 +24,10 @@ Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('en
 Route::get('/create', [EntradasController::class, 'create'])->middleware('auth');
 Route::post('/create', [EntradasController::class, 'store'])->middleware('auth');
 
+Route::get('/entrada/{entradas}/edit', [EntradasController::class, 'edit'])->middleware('auth');
+Route::put('/entrada/{entradas}/edit', [EntradasController::class, 'update'])->middleware('auth');
+Route::delete('/entrada/{entradas}', [EntradasController::class, 'destroy'])->middleware('auth');
+
 Route::resource('/user', UserController::class)
 ->middleware('auth');
 

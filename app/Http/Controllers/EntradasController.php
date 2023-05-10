@@ -92,24 +92,62 @@ class EntradasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Entradas $entradas)
+    public function edit($id)
     {
-        //
+        $entrada = Entradas::find($id);
+        $categorias = Categorias::all();
+
+        return view('entradas.edit')
+        ->with('entrada', $entrada)
+        ->with('categorias', $categorias);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Entradas $entradas)
+    public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'titulo' => 'required|max:15',
+        'descripcion' => 'required|max:300',
+        'fecha' => 'required|date',
+        'categoria' => 'required',
+        'usuario' => 'required'
+      ]);
+
+      $entrada = Entradas::find($id);
+
+      if($request->hasFile('imagen')){
+        $file = $request->file('imagen');
+        $destino = "images/";
+        $nombreImagen = time().'-'.$file->getClientOriginalName();
+        $uploadSuccess = $request->file('imagen')->move($destino, $nombreImagen);
+
+        // solo cambio la imagen si se ha cambiado
+        $entrada->imagen = $nombreImagen;
+      }
+
+
+      $entrada->titulo = $request->input('titulo');
+      $entrada->descripcion = $request->input('descripcion');
+      $entrada->fecha = $request->input('fecha');
+      $entrada->categoria_id = $request->input('categoria');
+      $entrada->usuario_id = $request->input('usuario');
+      
+
+      $entrada->save(); //salva todo
+      $mensaje = "Entrada añadida con éxito";
+      return redirect()->action([UserController::class, 'index']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Entradas $entradas)
+    public function destroy($id)
     {
-        //
+        $entrada = Entradas::find($id);
+        $entrada->delete();
+
+        return redirect()->action([UserController::class, 'index']);
     }
 }
