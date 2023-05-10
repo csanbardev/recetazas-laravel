@@ -19,19 +19,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EntradasController::class, 'index']);
 
-Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show');
+Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show')->middleware('can:user');
 
-Route::get('/create', [EntradasController::class, 'create'])->middleware('auth');
-Route::post('/create', [EntradasController::class, 'store'])->middleware('auth');
+Route::get('/create', [EntradasController::class, 'create'])->middleware('auth')->middleware('can:user');
+Route::post('/create', [EntradasController::class, 'store'])->middleware('auth')->middleware('can:user');
 
-Route::get('/entrada/{entradas}/edit', [EntradasController::class, 'edit'])->middleware('auth');
-Route::put('/entrada/{entradas}/edit', [EntradasController::class, 'update'])->middleware('auth');
-Route::delete('/entrada/{entradas}', [EntradasController::class, 'destroy'])->middleware('auth');
+Route::get('/entrada/{entradas}/edit', [EntradasController::class, 'edit'])->middleware('auth')->middleware('can:user');
+Route::put('/entrada/{entradas}/edit', [EntradasController::class, 'update'])->middleware('auth')->middleware('can:user');
+Route::delete('/entrada/{entradas}', [EntradasController::class, 'destroy'])->middleware('auth')->middleware('can:user');
 
-Route::resource('/user', UserController::class)
-->middleware('auth');
+Route::get('/user', [UserController::class, 'index'])
+->middleware('auth')->middleware('can:user');
 
-Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin', [AdminController::class, 'index'])->name('admin.entradas')->middleware('auth')->middleware('can:admin');
 
 
 Route::get('/dashboard', function () {

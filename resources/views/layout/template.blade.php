@@ -11,31 +11,57 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="{{url('/')}}">Inicio</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{url('/create')}}">Añadir</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{{url('/user')}}">Listado Usuario</a>
-      </li>
-    </ul>
-  </nav>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="justify-content: space-between;">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url('/') }}">Inicio</a>
+            </li>
+            
 
-  @yield('contenido')
+        </ul>
+        @guest
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="{{url('/login')}}" class="nav-link">Iniciar sesión</a></li>
+                <li class="nav-item"><a href="{{url('/register')}}" class="nav-link">Registrarse</a></li>
+            </ul>
+        @endguest
+        @auth
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        {{ auth()->user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="{{ url('/create') }}">Añadir</a>
+                        <a class="dropdown-item" href="{{ url('/user') }}">Mis entradas</a>
+                        @can('admin')
+                            <a class="dropdown-item" href="{{ url('/admin') }}">Administrar Entradas</a>
+                            <a class="dropdown-item" href="{{ url('/admin/user') }}">Administrar Usuarios</a>
+                            <a class="dropdown-item" href="{{ url('/admin/logs') }}">Administrar Logs</a>
+                        @endcan
+                        <form action="/logout" method="post">
+                          @csrf
+                          <button class="dropdown-item btn " type="submit">Cerrar sesión</button>
+                        </form>
+                        
+                    </div>
+                </li>
+            </ul>
 
-  <footer class="page-footer font-small blue mt-4">
+        @endauth
+    </nav>
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2022 Copyright:
-      <a href="/"> Recetazas.com</a>
-    </div>
-    <!-- Copyright -->
-  
-  </footer>
+    @yield('contenido')
+
+    <footer class="page-footer font-small blue mt-4">
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2022 Copyright:
+            <a href="/"> Recetazas.com</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
