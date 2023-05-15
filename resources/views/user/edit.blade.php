@@ -40,5 +40,6 @@
           
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
+        
     </div>
 @endsection

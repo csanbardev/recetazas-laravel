@@ -29,12 +29,47 @@
             <td>{{$user->email}}</td>
             <td><img src="{{'/images/'.$user->avatar}}" >{{$user->avatar}}</td>
             <td>
-              <a href="{{ url('user/' . $user->id . '/edit') }}" class="btn btn-secondary">Editar</a> 
-              <a href="{{ url('user/' . $user->id) }}" class="btn btn-secondary">Eliminar</a> 
+              <a href="{{ url('user/' . $user->id . '/edit') }}" class="btn btn-secondary">Editar</a>
+              @if($user->id!=auth()->user()->id) 
+              <a class="btn btn-danger" data-toggle="modal"
+                                    data-target=<?= '#modal-' . $user['id'] ?>>Eliminar</a>
+              @endif                      
             </td>
           </tr>
+          <!-- Ventana modal -->
+          <div class="modal" id=<?= 'modal-' . $user['id'] ?>>
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Eliminar usuario</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        ¿Seguro que quieres borrar este usuario?
+                    </div>
+
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <form action="{{ url('user/' . $user->id) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <button class="btn btn-danger" type="submit">Aceptar</button>
+                            <button type="button" class="btn btn-primary"
+                                data-dismiss="modal">Cancelar</button>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
         @endforeach
       </tbody>
     </table>
+    {{ $usuarios->links() }}
   </div>
 @endsection
