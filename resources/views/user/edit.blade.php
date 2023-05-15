@@ -15,48 +15,29 @@
             </div>
         @endif
 
-        <form action="{{ url('user/' . $usuario->id.'/edit') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ url('user/' . $user->id.'/edit') }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @csrf
 
-            <label for="titulo">Título
-                <input name="titulo" class="form-control" type="text" value="{{ $entrada->titulo }}" />
+            <label for="titulo">Nick
+                <input name="nick" class="form-control" type="text" value="{{ $user->nick }}" />
             </label>
             <br>
-            <label for="descripcion">Descripción
-                <textarea name="descripcion" class="form-control" name="" id="descripcion" cols="30" rows="10">
-        {{ $entrada->descripcion }}
-      </textarea>
+            <label for="titulo">Nombre
+                <input name="name" class="form-control" type="text" value="{{ $user->name }}" />
             </label>
             <br>
-            <label for="fecha">Inserta la fecha
-                <input name="fecha" class="form-control" type="date" id="" value="{{ $entrada->fecha }}">
-
-
+            <label for="titulo">Apellidos
+                <input name="apellidos" class="form-control" type="text" value="{{ $user->apellidos }}" />
             </label>
             <br>
-            <label for="imagen">Inserta la imagen
-                <input name="imagen" class="form-control" type="file" name="imagen" id="" value="{{$entrada->imagen}}">
+            <label for="titulo">Email
+                <input name="email" class="form-control" type="text" value="{{ $user->email }}" />
             </label>
             <br>
-            <label for="imagen">Imagen de la entrada
-              <img src="{{'/images/'.$entrada->imagen}}" width="200">
-            </label>
            
-            <br>
-
-
-            <label for="categoria">Categoría
-                <select name="categoria" id="" class="form-select">
-                    <option value="">Seleccionar categoría</option>
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->id }}" @if ($categoria->id == $entrada->categoria_id) {{'selected'}} @endif >{{ $categoria->nombre }}</option>
-                    @endforeach
-                </select>
-            </label>
-            <br>
-            <br>
-            <input type="hidden" value="{{ $entrada->usuario_id }}" name="usuario">
+        
+          
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
     </div>

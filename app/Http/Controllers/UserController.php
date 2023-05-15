@@ -49,17 +49,35 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+      $user = User::find($id);
+
+      return view('user.edit')
+      ->with('user', $user);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+      
+
+      $user = User::find($id);
+
+      
+
+
+      $user->nick = $request->input('nick');
+      $user->name = $request->input('name');
+      $user->apellidos = $request->input('apellidos');
+      $user->email = $request->input('email');
+      
+
+      $user->save(); //salva todo
+      $mensaje = "Entrada añadida con éxito";
+      return redirect()->action([AdminController::class, 'usuarios']);
     }
 
     /**

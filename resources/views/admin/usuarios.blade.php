@@ -30,7 +30,7 @@
             <td><img src="{{'/images/'.$user->avatar}}" >{{$user->avatar}}</td>
             <td>
               <a href="{{ url('user/' . $user->id . '/edit') }}" class="btn btn-secondary">Editar</a> 
-              <a href="{{ url('user/' . $user->id . '/edit') }}" class="btn btn-secondary">Eliminar</a> 
+              <a href="{{ url('user/' . $user->id) }}" class="btn btn-secondary">Eliminar</a> 
             </td>
           </tr>
         @endforeach
