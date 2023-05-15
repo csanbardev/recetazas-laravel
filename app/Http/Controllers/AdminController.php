@@ -20,11 +20,33 @@ class AdminController extends Controller
     }
 
     /**
+     * Muestra una lista de usuarios
+     */
+    public function usuarios(){
+      $usuarios = User::orderBy('id', 'asc')->paginate(10);
+       
+
+      return view('admin.usuarios')
+      ->with('usuarios', $usuarios);;
+    }
+
+    /**
+     * Muestra una lista de logs
+     */
+    public function logs(){
+      $logs = User::orderBy('id', 'asc')->paginate(10);
+       
+
+      return view('admin.logs')
+      ->with('logs', $logs);;
+    }
+
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+       
     }
 
     /**

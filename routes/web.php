@@ -31,12 +31,13 @@ Route::delete('/entrada/{entradas}', [EntradasController::class, 'destroy'])->mi
 Route::get('/user', [UserController::class, 'index'])
 ->middleware('auth')->middleware('can:user');
 
-Route::get('/admin', [AdminController::class, 'index'])->name('admin.entradas')->middleware('auth')->middleware('can:admin');
+Route::get('/user/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->middleware('can:admin');
+Route::get('/admin/entradas', [AdminController::class, 'index'])->name('admin.entradas')->middleware('auth')->middleware('can:admin');
+Route::get('/admin/users', [AdminController::class, 'usuarios'])->name('admin.usuarios')->middleware('auth')->middleware('can:admin');
+Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs')->middleware('auth')->middleware('can:admin');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

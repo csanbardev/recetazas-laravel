@@ -11,9 +11,9 @@
     
     <br>
     
-    @if ($entradas == null) 
+    @if (count($entradas)<=0) 
       <h2>No hay entradas para mostrar :C</h2>
-    @else
+    @endif
     
     <div class="row">
       
@@ -36,7 +36,7 @@
       
 
     </div>
-    @endif
+    
     <br>
     
     {{$entradas->links()}}

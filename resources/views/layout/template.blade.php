@@ -35,8 +35,8 @@
                         <a class="dropdown-item" href="{{ url('/create') }}">Añadir</a>
                         <a class="dropdown-item" href="{{ url('/user') }}">Mis entradas</a>
                         @can('admin')
-                            <a class="dropdown-item" href="{{ url('/admin') }}">Administrar Entradas</a>
-                            <a class="dropdown-item" href="{{ url('/admin/user') }}">Administrar Usuarios</a>
+                            <a class="dropdown-item" href="{{ url('/admin/entradas') }}">Administrar Entradas</a>
+                            <a class="dropdown-item" href="{{ url('/admin/users') }}">Administrar Usuarios</a>
                             <a class="dropdown-item" href="{{ url('/admin/logs') }}">Administrar Logs</a>
                         @endcan
                         <form action="/logout" method="post">

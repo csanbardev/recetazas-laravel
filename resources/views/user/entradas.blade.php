@@ -6,9 +6,11 @@
 
 
 
-        <h1>Todas las entradas</h1>
+        <h1>Entradas de {{auth()->user()->name}}</h1>
         <br>
-
+        @if (count($entradas) <= 0)
+            <h2>No hay entradas para mostrar :C</h2>
+        @endif
 
         @if ($entradas == null)
             <h2>No hay entradas para mostrar :C</h2>
@@ -51,7 +53,7 @@
 
                                 <!-- Modal footer -->
                                 <div class="modal-footer">
-                                    <form action="{{ url('entrada/'.$dato->id) }}" method="post">
+                                    <form action="{{ url('entrada/' . $dato->id) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <button class="btn btn-danger" type="submit">Aceptar</button>
