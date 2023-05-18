@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EntradasController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LogsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,7 @@ Route::get('/user', [UserController::class, 'index'])
 Route::get('/user/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->middleware('can:admin');
 Route::get('/admin/entradas', [AdminController::class, 'index'])->name('admin.entradas')->middleware('auth')->middleware('can:admin');
 Route::get('/admin/users', [AdminController::class, 'usuarios'])->name('admin.usuarios')->middleware('auth')->middleware('can:admin');
-Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs')->middleware('auth')->middleware('can:admin');
+Route::get('/admin/logs', [LogsController::class, 'index'])->name('admin.logs')->middleware('auth')->middleware('can:admin');
 
 Route::get('/user/{usuario}/edit', [UserController::class, 'edit'])->middleware('auth')->middleware('can:admin');
 Route::put('/user/{usuario}/edit', [UserController::class, 'update'])->middleware('auth')->middleware('can:admin');

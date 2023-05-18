@@ -16,10 +16,9 @@ return new class extends Migration
       $table->increments('id');
       $table->date('fecha');
       $table->time('hora');
-      $table->unsignedBigInteger('usuario');
+      $table->string('operacion', 20);
+      $table->string('usuario', 20);
       $table->timestamps();
-
-      $table->foreign('usuario')->references('id')->on('users');
     });
 
     $procedimiento = "
