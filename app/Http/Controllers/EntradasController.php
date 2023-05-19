@@ -6,6 +6,7 @@ use App\Models\Entradas;
 use Illuminate\Http\Request;
 use App\Models\Categorias;
 use App\Models\User;
+use Illuminate\Support\Facades\App;
 
 class EntradasController extends Controller
 {
@@ -74,7 +75,14 @@ class EntradasController extends Controller
       
 
       $entrada->save(); //salva todo
-      $mensaje = "Entrada añadida con éxito";
+      $log = new LogsController;
+        $params = [
+          date('y-m-d'),
+          date('H:i:s'),
+          'crear entrada',
+          auth()->user()->name
+        ];
+        $log->create($params);
       return redirect()->action([EntradasController::class, 'index']);
     }
 
@@ -85,6 +93,14 @@ class EntradasController extends Controller
     {
       $usuario = User::find($entradas->usuario_id);
       $categoria = Categorias::find($entradas->categoria_id);
+      $log = new LogsController;
+        $params = [
+          date('y-m-d'),
+          date('H:i:s'),
+          'mostrar detalle entrada',
+          auth()->user()->name
+        ];
+        $log->create($params);
 
         return view('entradas.detalle', compact('entradas', 'usuario', 'categoria'));
     }
@@ -136,7 +152,14 @@ class EntradasController extends Controller
       
 
       $entrada->save(); //salva todo
-      $mensaje = "Entrada añadida con éxito";
+      $log = new LogsController;
+        $params = [
+          date('y-m-d'),
+          date('H:i:s'),
+          'actualizar entrada',
+          auth()->user()->name
+        ];
+        $log->create($params);
       return redirect()->action([UserController::class, 'index']);
     }
 
@@ -144,10 +167,18 @@ class EntradasController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy($id)
-    {
+    {   $log = new LogsController;
+        $params = [
+          date('y-m-d'),
+          date('H:i:s'),
+          'eliminar entrada',
+          auth()->user()->name
+        ];
+        $log->create($params);
+
         $entrada = Entradas::find($id);
         $entrada->delete();
-
+        
         return redirect()->action([UserController::class, 'index']);
     }
 }

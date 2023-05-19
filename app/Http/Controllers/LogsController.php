@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Logs;
+use Illuminate\Support\Facades\DB;
 
 class LogsController extends Controller
 {
@@ -22,9 +23,9 @@ class LogsController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(array $params)
     {
-        //
+        DB::select('CALL insertarLog(?,?,?,?)', $params);
     }
 
     /**

@@ -20,7 +20,7 @@
         @foreach ($logs as $log)
           <tr>
             <td>{{$log->id}}</td>
-            <td>{{$log->id}}</td>
+            <td>{{$log->fecha}}</td>
             <td>{{$log->hora}}</td>
             <td>{{$log->usuario}}</td>
             <td>{{$log->operacion}}</td>

@@ -53,6 +53,8 @@ class UserController extends Controller
     {
       $user = User::find($id);
 
+
+
       return view('user.edit')
       ->with('user', $user);
     }
@@ -76,7 +78,14 @@ class UserController extends Controller
       
 
       $user->save(); //salva todo
-      $mensaje = "Entrada añadida con éxito";
+      $log = new LogsController;
+        $params = [
+          date('y-m-d'),
+          date('H:i:s'),
+          'actualizar usuario',
+          auth()->user()->name
+        ];
+        $log->create($params);
       return redirect()->action([AdminController::class, 'usuarios']);
     }
 
@@ -87,6 +96,15 @@ class UserController extends Controller
     {
       $user =  User::find($id);
       $user->delete();
+
+      $log = new LogsController;
+      $params = [
+        date('y-m-d'),
+        date('H:i:s'),
+        'eliminar usuario',
+        auth()->user()->name
+      ];
+      $log->create($params);
 
       return redirect()->action([AdminController::class, 'usuarios']);
     }
