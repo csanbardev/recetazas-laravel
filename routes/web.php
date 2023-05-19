@@ -41,6 +41,8 @@ Route::get('/user/{usuario}/edit', [UserController::class, 'edit'])->middleware(
 Route::put('/user/{usuario}/edit', [UserController::class, 'update'])->middleware('auth')->middleware('can:admin');
 Route::delete('/user/{usuario}', [UserController::class, 'destroy'])->middleware('auth')->middleware('can:admin');
 
+Route::delete('/logs/{id}', [LogsController::class, 'destroy'])->middleware('auth')->middleware('can:admin');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

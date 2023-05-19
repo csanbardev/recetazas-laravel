@@ -65,6 +65,9 @@ class LogsController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+      $log = Logs::find($id);
+      $log->delete();
+      
+      return redirect()->action([LogsController::class, 'index']);
     }
 }
