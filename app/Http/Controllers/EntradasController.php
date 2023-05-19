@@ -14,8 +14,24 @@ class EntradasController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        
+
         $entradas = Entradas::orderBy('fecha', 'desc')->paginate(6);
+       
+
+        return view('entradas.inicio')
+        ->with('entradas', $entradas);
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function indexAsc()
+    {   
+        
+
+        $entradas = Entradas::orderBy('fecha', 'asc')->paginate(6);
        
 
         return view('entradas.inicio')

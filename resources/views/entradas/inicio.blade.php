@@ -5,7 +5,15 @@
 
   <div class="container center">
 
-
+    <div class="dropdown">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+        Ordenar por fecha
+      </button>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{{ url('/') }}">Más reciente primero</a>
+        <a class="dropdown-item" href="{{ url('/asc') }}">Más antiguo primero</a>
+      </div>
+    </div>
     
     <h1>Todas las entradas</h1>
     
