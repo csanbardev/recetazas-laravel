@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [EntradasController::class, 'index']);
 Route::get('/asc', [EntradasController::class, 'indexAsc']);
+Route::get('/imprimir', [EntradasController::class, 'pdf']);
 
 Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show')->middleware('can:user');
 

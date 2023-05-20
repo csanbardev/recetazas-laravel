@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Categorias;
 use App\Models\User;
 use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class EntradasController extends Controller
 {
@@ -196,5 +197,12 @@ class EntradasController extends Controller
         $entrada->delete();
         
         return redirect()->action([UserController::class, 'index']);
+    }
+
+    public function pdf(){
+      $entradas = Entradas::orderBy('fecha', 'desc')->paginate(6);
+      
+    $pdf = Pdf::loadView('pdf.entradas', compact('entradas'));
+    return $pdf->download('entradas.pdf');
     }
 }
