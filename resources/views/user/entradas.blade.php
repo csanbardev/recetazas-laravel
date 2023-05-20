@@ -6,15 +6,16 @@
 
 
 
-        <h1>Entradas de {{auth()->user()->name}}</h1>
+        <h1>Entradas de {{ auth()->user()->name }}</h1>
         <br>
         @if (count($entradas) <= 0)
             <h2>No hay entradas para mostrar :C</h2>
         @endif
 
-        @if ($entradas == null)
-            <h2>No hay entradas para mostrar :C</h2>
-        @else
+        <form class="form-inline" action="/action_page.php">
+          <input class="form-control mr-sm-2" type="text" placeholder="Buscar entrada">
+          <button class="btn btn-success" type="submit">Buscar</button>
+        </form>
             <div class="row">
 
                 @foreach ($entradas as $dato)
@@ -70,7 +71,6 @@
 
 
             </div>
-        @endif
         <br>
 
         {{ $entradas->links() }}

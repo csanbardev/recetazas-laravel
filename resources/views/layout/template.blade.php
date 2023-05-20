@@ -17,9 +17,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{ url('/') }}">Inicio</a>
             </li>
-            
-
         </ul>
+        
         @guest
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="{{url('/login')}}" class="nav-link">Iniciar sesión</a></li>

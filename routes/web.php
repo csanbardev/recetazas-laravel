@@ -37,6 +37,8 @@ Route::get('/user', [UserController::class, 'index'])
 Route::get('/user/{user}/edit', [UserController::class, 'edit'])->middleware('auth')->middleware('can:admin');
 Route::get('/admin/entradas', [AdminController::class, 'index'])->name('admin.entradas')->middleware('auth')->middleware('can:admin');
 Route::get('/admin/users', [AdminController::class, 'usuarios'])->name('admin.usuarios')->middleware('auth')->middleware('can:admin');
+Route::post('/admin/users', [AdminController::class, 'usuariosBusc'])->name('admin.usuariosBusc')->middleware('auth')->middleware('can:admin');
+
 Route::get('/admin/logs', [LogsController::class, 'index'])->name('admin.logs')->middleware('auth')->middleware('can:admin');
 
 Route::get('/user/{usuario}/edit', [UserController::class, 'edit'])->middleware('auth')->middleware('can:admin');

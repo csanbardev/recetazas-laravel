@@ -4,6 +4,12 @@
 @section('contenido')
   <div class="container">
     <h2>Listado de usuarios</h2>
+    <form class="form-inline" action="{{url('admin/users')}}" method="POST">
+    @csrf
+    
+      <input class="form-control mr-sm-2" name="name" type="text" placeholder="Buscar usuario">
+      <button class="btn btn-success" type="submit">Buscar usuario</button>
+    </form>
     @if (count($usuarios)<=0) 
       <h2>No hay usuarios para mostrar :C</h2>
     @endif

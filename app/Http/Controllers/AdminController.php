@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+
+
   /**
    * Display a listing of the resource.
    */
@@ -22,9 +24,14 @@ class AdminController extends Controller
   /**
    * Muestra una lista de usuarios
    */
-  public function usuarios()
+  public function usuarios(Request $request = null)
   {
-    $usuarios = User::orderBy('id', 'asc')->paginate(4);
+    if ($request == null) {
+      $usuarios = User::orderBy('id', 'asc')->paginate(4);
+    } else {
+      $search = $request->input('name');
+      $usuarios = User::where('name', 'LIKE', '%' . $search . '%')->orderBy('id', 'asc')->paginate(4);
+    }
 
     $log = new LogsController;
     $params = [
@@ -39,8 +46,26 @@ class AdminController extends Controller
       ->with('usuarios', $usuarios);;
   }
 
+  /**
+   * Muestra una lista de usuarios
+   */
+  public function usuariosBusc(Request $request)
+  {
+
+    $search = $request->input('name');
+    $usuarios = User::where('name', 'LIKE', '%' . $search . '%')->orderBy('id', 'asc')->paginate(4);
 
 
-  
+    $log = new LogsController;
+    $params = [
+      date('y-m-d'),
+      date('H:i:s'),
+      'mostrar usuarios',
+      auth()->user()->name
+    ];
+    $log->create($params);
 
+    return view('admin.usuarios')
+      ->with('usuarios', $usuarios);;
+  }
 }
