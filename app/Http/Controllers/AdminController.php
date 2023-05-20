@@ -17,7 +17,7 @@ class AdminController extends Controller
   {
     $entradas = Entradas::orderBy('fecha', 'desc')->paginate(6);
 
-    return view('user.entradas')
+    return view('admin.entradas')
       ->with('entradas', $entradas);
   }
 

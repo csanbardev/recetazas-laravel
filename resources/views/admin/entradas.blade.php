@@ -1,12 +1,12 @@
 @extends('layout/template')
-@section('titulo', 'Recetazas | Listado')
+@section('titulo', 'Recetazas | Admin Entradas')
 
 @section('contenido')
     <div class="container center">
 
 
 
-        <h1>Entradas de {{ auth()->user()->name }}</h1>
+        <h1>Administrador de entradas</h1>
         <br>
         @if (count($entradas) <= 0)
             <h2>No hay entradas para mostrar :C</h2>
@@ -17,12 +17,10 @@
 
                 @foreach ($entradas as $dato)
                     <div class="shadow-lg card col-lg-4 p-2" style="width:400px">
-                        <img class="card-img-top" src={{ 'images/' . $dato->imagen }} alt="Card image">
+                        <img class="card-img-top" src={{ '/images/' . $dato->imagen }} alt="Card image">
                         <div class="card-body">
                             <h4 class="card-title">{{ $dato->titulo }} </h4>
                             <p class="card-text">{{ $dato->descripcion }} </p>
-                            <span class="badge badge-primary">Autor: {{ $dato->nick }} </span><br>
-                            <span class="badge badge-secondary">{{ $dato->nombre }} </span>
                             <span class="badge badge-secondary">{{ date('d-m-Y', strtotime($dato->fecha)) }} </span>
                             <div class="pt-4">
                                 <a href="{{ route('entradas.show', $dato) }}" class="btn btn-secondary">Detalle</a>
