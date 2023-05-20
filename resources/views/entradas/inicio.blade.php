@@ -48,6 +48,9 @@
     <br>
     
     {{$entradas->links()}}
+    <br>
+    <br>
+    <a class="btn btn-primary" href="{{url('/imprimir')}}">imprimir listado</a>
   </div>
 
  

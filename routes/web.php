@@ -44,6 +44,7 @@ Route::put('/user/{usuario}/edit', [UserController::class, 'update'])->middlewar
 Route::delete('/user/{usuario}', [UserController::class, 'destroy'])->middleware('auth')->middleware('can:admin');
 
 Route::delete('/logs/{id}', [LogsController::class, 'destroy'])->middleware('auth')->middleware('can:admin');
+Route::get('/logs/imprimir', [LogsController::class, 'pdf'])->middleware('auth')->middleware('can:admin');
 
 
 Route::middleware('auth')->group(function () {
