@@ -55,4 +55,9 @@
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
     </div>
+    <script>
+      CKEDITOR.replace('descripcion', {
+        height: '500px',
+      });
+    </script>
 @endsection
