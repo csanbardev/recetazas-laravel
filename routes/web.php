@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [EntradasController::class, 'index']);
+Route::post('/', [EntradasController::class, 'indexBusc']);
 Route::get('/asc', [EntradasController::class, 'indexAsc']);
 Route::get('/imprimir', [EntradasController::class, 'pdf']);
 

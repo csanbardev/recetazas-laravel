@@ -28,6 +28,20 @@ class EntradasController extends Controller
   /**
    * Display a listing of the resource.
    */
+  public function indexBusc(Request $request)
+  {
+
+    $search = $request->input('name');
+    $entradas = Entradas::where('titulo', 'LIKE', '%' . $search . '%')->orderBy('fecha', 'desc')->paginate(6);
+
+
+    return view('entradas.inicio')
+      ->with('entradas', $entradas);
+  }
+
+  /**
+   * Display a listing of the resource.
+   */
   public function indexAsc()
   {
 

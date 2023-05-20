@@ -18,7 +18,12 @@
                 <a class="nav-link" href="{{ url('/') }}">Inicio</a>
             </li>
         </ul>
-        
+        <form class="form-inline" action="{{url('/')}}" method="POST">
+          @csrf
+          
+            <input class="form-control mr-sm-2" name="name" type="text" placeholder="Buscar entradas">
+            <button class="btn btn-success" type="submit">Buscar</button>
+          </form>
         @guest
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="{{url('/login')}}" class="nav-link">Iniciar sesión</a></li>
