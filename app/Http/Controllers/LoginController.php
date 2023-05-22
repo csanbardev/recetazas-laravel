@@ -16,6 +16,7 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'name' => ['required'],
             'password' => ['required'],
+            'captcha' => 'required|captcha'
         ]);
  
         if (Auth::attempt($credentials)) {

@@ -38,6 +38,18 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        <div class="form-group mt-4 mb-4">
+          <div class="captcha">
+              <span>{!! captcha_img() !!}</span>
+              <button type="button" class="btn btn-danger" class="reload" id="reload">
+                  &#x21bb;
+              </button>
+          </div>
+      </div>
+      <div class="form-group mb-4">
+          <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
+          <x-input-error :messages="$errors->get('captcha')" class="mt-2" />
+      </div>
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
@@ -49,4 +61,15 @@
             </x-primary-button>
         </div>
     </form>
+    <script type="text/javascript">
+      $('#reload').click(function () {
+          $.ajax({
+              type: 'GET',
+              url: 'reload-captcha',
+              success: function (data) {
+                  $(".captcha span").html(data.captcha);
+              }
+          });
+      });
+  </script>
 </x-guest-layout>
