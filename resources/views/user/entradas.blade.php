@@ -21,8 +21,7 @@
                         <div class="card-body">
                             <h4 class="card-title">{{ $dato->titulo }} </h4>
                             <p class="card-text">{{ $dato->descripcion }} </p>
-                            <span class="badge badge-primary">Autor: {{ $dato->nick }} </span><br>
-                            <span class="badge badge-secondary">{{ $dato->nombre }} </span>
+                            <span class="badge badge-primary">Autor: {{ auth()->user()->nick }} </span><br>
                             <span class="badge badge-secondary">{{ date('d-m-Y', strtotime($dato->fecha)) }} </span>
                             <div class="pt-4">
                                 <a href="{{ route('entradas.show', $dato) }}" class="btn btn-secondary">Detalle</a>

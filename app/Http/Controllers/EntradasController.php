@@ -17,7 +17,6 @@ class EntradasController extends Controller
   public function index()
   {
 
-
     $entradas = Entradas::orderBy('fecha', 'desc')->paginate(6);
 
 
@@ -48,14 +47,7 @@ class EntradasController extends Controller
 
     $entradas = Entradas::orderBy('fecha', 'asc')->paginate(6);
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'ordenar asc entradas',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
 
     return view('entradas.inicio')
       ->with('entradas', $entradas);
@@ -133,14 +125,7 @@ class EntradasController extends Controller
   {
     $usuario = User::find($entradas->usuario_id);
     $categoria = Categorias::find($entradas->categoria_id);
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'mostrar detalle',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
 
     return view('entradas.detalle', compact('entradas', 'usuario', 'categoria'));
   }

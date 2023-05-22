@@ -23,7 +23,7 @@ Route::post('/', [EntradasController::class, 'indexBusc']);
 Route::get('/asc', [EntradasController::class, 'indexAsc']);
 Route::get('/imprimir', [EntradasController::class, 'pdf']);
 
-Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show')->middleware('can:user');
+Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('entradas.show');
 
 Route::get('/create', [EntradasController::class, 'create'])->middleware('auth')->middleware('can:user');
 Route::post('/create', [EntradasController::class, 'store'])->middleware('auth')->middleware('can:user');
