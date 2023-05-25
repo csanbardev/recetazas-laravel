@@ -23,18 +23,7 @@
 
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
-        <div class="form-group mt-4 mb-4">
-          <div class="captcha">
-              <span>{!! captcha_img() !!}</span>
-              <button type="button" class="btn btn-danger" class="reload" id="reload">
-                  &#x21bb;
-              </button>
-          </div>
-      </div>
-      <div class="form-group mb-4">
-          <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha">
-          <x-input-error :messages="$errors->get('captcha')" class="mt-2" />
-      </div>
+        
 
         <!-- Remember Me -->
         <div class="block mt-4">
@@ -57,15 +46,5 @@
         </div>
         
     </form>
-    <script type="text/javascript">
-      $('#reload').click(function () {
-          $.ajax({
-              type: 'GET',
-              url: 'reload-captcha',
-              success: function (data) {
-                  $(".captcha span").html(data.captcha);
-              }
-          });
-      });
-  </script>
+    
 </x-guest-layout>

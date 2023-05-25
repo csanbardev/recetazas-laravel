@@ -21,14 +21,7 @@ return new class extends Migration
       $table->timestamps();
     });
 
-    $procedimiento = "
-        CREATE PROCEDURE `insertarLog`(`fecha` DATE, `hora` TIME, `operacion` VARCHAR(20), `usuario` VARCHAR(20))
-        BEGIN
-            INSERT INTO logs (fecha, hora, operacion, usuario) VALUES (fecha, hora, operacion, usuario);
-        END
-        ";
-
-    DB::unprepared($procedimiento);
+    
   }
 
   /**
