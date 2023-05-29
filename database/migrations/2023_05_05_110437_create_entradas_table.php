@@ -19,10 +19,12 @@ return new class extends Migration
           $table->date('fecha');
           $table->unsignedBigInteger('usuario_id');
           $table->unsignedInteger('categoria_id');
+          $table->unsignedInteger('pasos_id');
           $table->timestamps();
 
           $table->foreign('usuario_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
           $table->foreign('categoria_id')->references('id')->on('categorias');
+          $table->foreign('pasos_id')->references('id')->on('pasos');
         });
     }
 

@@ -23,14 +23,8 @@
         @endforeach
         </ul>    
         <h3>Preparación</h3>
-        @foreach ($pasos as $paso)
-            <ol>
-                <li>{{$paso->descripcion}}</li>
-                @if ($paso->imagen != null)
-                    <img src="{{$paso->imagen}}" alt="">
-                @endif
-            </ol>
-        @endforeach
+        <?= $pasos->secuencia ?>
+        
     </div>
 
 

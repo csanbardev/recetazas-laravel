@@ -7,7 +7,7 @@ use App\Models\Entradas;
 use Illuminate\Http\Request;
 use App\Models\Categorias;
 use App\Models\User;
-use App\Models\Paso;
+use App\Models\Pasos;
 use App\Models\Ingrediente;
 use App\Models\IngredienteReceta;
 
@@ -130,7 +130,7 @@ class EntradasController extends Controller
   {
     $usuario = User::find($entradas->usuario_id);
     $categoria = Categorias::find($entradas->categoria_id);
-    $pasos = Paso::where('entrada_id', '=', $entradas->id)->get();
+    $pasos = Pasos::where('id', '=', $entradas->pasos_id)->first();
     $ingredientes = DB::table('ingrediente_receta')
                       ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=','ingrediente.id')
                       ->where('ingrediente_receta.entrada_id', '=', $entradas->id)
