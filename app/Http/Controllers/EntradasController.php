@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Entradas;
 use Illuminate\Http\Request;
 use App\Models\Categorias;
 use App\Models\User;
+use App\Models\Paso;
+use App\Models\Ingrediente;
+use App\Models\IngredienteReceta;
+
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -125,9 +130,16 @@ class EntradasController extends Controller
   {
     $usuario = User::find($entradas->usuario_id);
     $categoria = Categorias::find($entradas->categoria_id);
+    $pasos = Paso::where('entrada_id', '=', $entradas->id)->get();
+    $ingredientes = DB::table('ingrediente_receta')
+                      ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=','ingrediente.id')
+                      ->where('ingrediente_receta.entrada_id', '=', $entradas->id)
+                      ->get();
+
+    
     
 
-    return view('entradas.detalle', compact('entradas', 'usuario', 'categoria'));
+    return view('entradas.detalle', compact('entradas', 'usuario', 'categoria', 'pasos', 'ingredientes'));
   }
 
   /**

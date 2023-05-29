@@ -2,20 +2,36 @@
 @section('titulo', 'Recetazas | Detalle')
 
 @section('contenido')
- 
- 
-  <div class="container mx-auto">
-    <div class="shadow-lg card mx-auto p-2" style="width:400px; margin-top: 6rem;">
-      <img class="card-img-top" src={{'/images/' . $entradas->imagen}} alt="Card image">
-      <div class="card-body">
-        <h4 class="card-title">{{$entradas->titulo}} </h4>
-        <p class="card-text">{{$entradas->descripcion}} </p>
-        <span class="badge badge-primary">Autor: {{$usuario->name}} </span><br>
-        <span class="badge badge-secondary">{{$categoria->nombre}} </span>
-        <span class="badge badge-secondary">{{date("d-m-Y", strtotime($entradas->fecha))}} </span>
-      </div>
+
+
+    <div class="container mx-auto ">
+        <h1 class="text-center">{{ $entradas->titulo }}</h1>
+        <img src="images/{{$entradas->imagen}}" alt="">
+        <!-- Descripcion breve-->
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam animi voluptatum quam vero maxime, id nesciunt
+            incidunt assumenda ducimus at odit architecto voluptatibus? Iure adipisci voluptas reiciendis illum ea rem iusto
+            ipsum esse repudiandae facilis libero, saepe dolorum corrupti veniam quos, cumque quia quod voluptate officiis
+            commodi? Beatae, quo aspernatur! Praesentium adipisci ratione, ipsam eius repellat animi natus illum sit quia
+            eaque commodi iure aliquid, in nemo temporibus consectetur amet suscipit autem distinctio, vero obcaecati
+            provident expedita? Tempore facere error eos aperiam, modi nemo. Suscipit maxime voluptates aspernatur qui odio.
+            Laudantium iusto molestias voluptatibus animi totam ratione quaerat ipsum repudiandae.</p>
+
+        <h3>Ingredientes</h3> 
+        <ul>
+        @foreach ($ingredientes as $ing)
+            <li>{{$ing->name}}: {{$ing->cantidad}} {{$ing->tipoCant}}</li>    
+        @endforeach
+        </ul>    
+        <h3>Preparación</h3>
+        @foreach ($pasos as $paso)
+            <ol>
+                <li>{{$paso->descripcion}}</li>
+                @if ($paso->imagen != null)
+                    <img src="{{$paso->imagen}}" alt="">
+                @endif
+            </ol>
+        @endforeach
     </div>
-  </div>
 
 
 @endsection
