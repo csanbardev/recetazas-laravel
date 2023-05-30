@@ -18,14 +18,19 @@
 
         <h3>Ingredientes</h3>
 
-        
+
         <ul>
             @foreach ($ingredientes as $ing)
                 <li>{{ $ing->name }}: {{ $ing->cantidad }} {{ $ing->tipoCant }}</li>
             @endforeach
         </ul>
         <h3>Preparación</h3>
-        <?= $pasos->secuencia ?>
+        <ol>
+            @foreach ($pasos as $paso)
+                <li>{{$paso->secuencia}}</li>
+            @endforeach
+        </ol>
+
 
     </div>
 

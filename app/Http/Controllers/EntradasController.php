@@ -108,10 +108,16 @@ class EntradasController extends Controller
     $entrada->imagen = $nombreImagen;
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
-    $entrada->pasos_id = 1;
 
 
     $entrada->save(); //salva todo
+
+    // ahora inserto los pasos de la receta
+    $pasos = new PasosController();
+    $pasosTabla = $request->input('paso');
+    foreach($pasosTabla as $pas){
+      $pasos->store($pas, $entrada->id);
+    }
 
     // ahora inserto los ingredientes de la receta
     $ingredientesReceta = new ControllersIngredienteReceta;
@@ -141,7 +147,7 @@ class EntradasController extends Controller
   {
     $usuario = User::find($entradas->usuario_id);
     $categoria = Categorias::find($entradas->categoria_id);
-    $pasos = Pasos::where('id', '=', $entradas->pasos_id)->first();
+    $pasos = Pasos::where('entrada_id', '=', $entradas->id)->orderBy('orden', 'asc')->get();
     $ingredientes = DB::table('ingrediente_receta')
                       ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=','ingrediente.id')
                       ->where('ingrediente_receta.entrada_id', '=', $entradas->id)

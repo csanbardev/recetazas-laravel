@@ -57,6 +57,8 @@
                 </select>
             </label>
             <br>
+
+            <h3>Introduce los ingredientes:</h3>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -86,6 +88,31 @@
                 </tbody>
             </table>
             <br>
+
+
+            <h3>Introduce los pasos a seguir:</h3>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody id="pasos">
+                    <tr>
+                        <td>
+                            <textarea name="paso[0][secuencia]" id="" cols="60" rows="5"></textarea>
+                            <input type="hidden" name="paso[0][orden]" value="1">
+                        </td>
+                        <td>
+                            <button id="btn-add-paso" class="btn btn-info">
+                                Sumar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <br>
             <input type="hidden" value="{{ auth()->user()->id }}" name="usuario">
             <input class="btn btn-primary" type="submit" name="submit">
         </form>
@@ -95,5 +122,6 @@
             height: '200px',
         });
     </script>
+
     <script type="text/javascript" src="{{ asset('js/ingredientes.js') }}"></script>
 @endsection

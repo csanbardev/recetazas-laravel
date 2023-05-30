@@ -28,7 +28,6 @@ class EntradasFactory extends Factory
             'imagen' => $this->faker->numberBetween($min = 1, $max = 5) .'.jpg',
             'usuario_id' => User::all()->random()->id,
             'categoria_id' => Categorias::all()->random()->id,
-            'pasos_id' => Pasos::all()->random()->id,
             'fecha' => $this->faker->date($format = 'Y-m-d', $max = 'now')
         ];
     }
