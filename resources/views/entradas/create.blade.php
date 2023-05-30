@@ -23,7 +23,8 @@
             </label>
             <br>
             <label for="descripcion">Descripción
-                <textarea name="descripcion" class="form-control ckeditor" name="" id="descripcion" cols="30" rows="10">
+                <textarea name="descripcion" class="form-control ckeditor" name="" id="descripcion" cols="30"
+                    rows="10">
         {{ old('descripcion') }}
       </textarea>
             </label>
@@ -42,7 +43,7 @@
             </label>
             <br>
             <label for="pasos">
-              <textarea class="form-control ckeditor" name="pasos" id="" cols="30" rows="10">
+                <textarea class="form-control ckeditor" name="pasos" id="" cols="30" rows="10">
 
               </textarea>
             </label>
@@ -56,6 +57,34 @@
                 </select>
             </label>
             <br>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Cantidad</th>
+                        <th>Unidad de Medida</th>
+                        <th>Ingrediente</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="ingredientes">
+                    <tr>
+                        <td>
+                            <input name="ing[0][cantidad]" type="text" placeholder="cantidad">
+                        </td>
+                        <td>
+                            <input name="ing[0][tipoCant]" type="text" placeholder="unidad de medida">
+                        </td>
+                        <td>
+                            <input name="ing[0][nombre]" type="text" placeholder="ingrediente">
+                        </td>
+                        <td>
+                            <button id="btn-add" class="btn btn-info">
+                                Sumar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
             <br>
             <input type="hidden" value="{{ auth()->user()->id }}" name="usuario">
             <input class="btn btn-primary" type="submit" name="submit">
@@ -66,4 +95,5 @@
             height: '200px',
         });
     </script>
+    <script type="text/javascript" src="{{ asset('js/ingredientes.js') }}"></script>
 @endsection

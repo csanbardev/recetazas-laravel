@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ingrediente extends Model
 {
+    protected $guarded = [];  
+    protected $table = "ingrediente";
     use HasFactory;
 }

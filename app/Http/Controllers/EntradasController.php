@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\IngredienteReceta as ControllersIngredienteReceta;
 use Illuminate\Support\Facades\DB;
 use App\Models\Entradas;
 use Illuminate\Http\Request;
@@ -107,10 +108,20 @@ class EntradasController extends Controller
     $entrada->imagen = $nombreImagen;
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
+    $entrada->pasos_id = 1;
 
 
     $entrada->save(); //salva todo
 
+    // ahora inserto los ingredientes de la receta
+    $ingredientesReceta = new ControllersIngredienteReceta;
+    $ingredientes = $request->input('ing');
+
+    foreach($ingredientes as $ing){
+     $ingredientesReceta->store($ing, $entrada->id);
+    }
+
+    // hago el log
     $log = new LogsController;
     $params = [
       date('y-m-d'),
