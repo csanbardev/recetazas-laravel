@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="http://cdn.ckeditor.com/4.5.4/standard/ckeditor.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/estilos.css')}}">
     <title>@yield('titulo')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,16 +22,16 @@
                 <a class="nav-link" href="{{ url('/') }}">Inicio</a>
             </li>
         </ul>
-        <form class="form-inline" action="{{url('/')}}" method="POST">
-          @csrf
-          
+        <form class="form-inline" action="{{ url('/') }}" method="POST">
+            @csrf
+
             <input class="form-control mr-sm-2" name="name" type="text" placeholder="Buscar entradas">
             <button class="btn btn-success" type="submit">Buscar</button>
-          </form>
+        </form>
         @guest
             <ul class="navbar-nav">
-                <li class="nav-item"><a href="{{url('/login')}}" class="nav-link">Iniciar sesión</a></li>
-                <li class="nav-item"><a href="{{url('/register')}}" class="nav-link">Registrarse</a></li>
+                <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Iniciar sesión</a></li>
+                <li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
             </ul>
         @endguest
         @auth
@@ -45,10 +49,10 @@
                             <a class="dropdown-item" href="{{ url('/admin/logs') }}">Administrar Logs</a>
                         @endcan
                         <form action="/logout" method="post">
-                          @csrf
-                          <button class="dropdown-item btn " type="submit">Cerrar sesión</button>
+                            @csrf
+                            <button class="dropdown-item btn " type="submit">Cerrar sesión</button>
                         </form>
-                        
+
                     </div>
                 </li>
             </ul>

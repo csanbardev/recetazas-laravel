@@ -6,7 +6,7 @@
 
     <div class="container mx-auto ">
         <h1 class="text-center">{{ $entradas->titulo }}</h1>
-        <img src="images/{{ $entradas->imagen }}" alt="">
+        
         <!-- Descripcion breve-->
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam animi voluptatum quam vero maxime, id nesciunt
             incidunt assumenda ducimus at odit architecto voluptatibus? Iure adipisci voluptas reiciendis illum ea rem iusto
@@ -15,7 +15,7 @@
             eaque commodi iure aliquid, in nemo temporibus consectetur amet suscipit autem distinctio, vero obcaecati
             provident expedita? Tempore facere error eos aperiam, modi nemo. Suscipit maxime voluptates aspernatur qui odio.
             Laudantium iusto molestias voluptatibus animi totam ratione quaerat ipsum repudiandae.</p>
-
+            <img class="mx-auto d-block img-fluid pb-4" src="/images/{{ $entradas->imagen }}" alt="">
         <h3>Ingredientes</h3>
 
 
@@ -27,7 +27,7 @@
         <h3>Preparación</h3>
         <ol>
             @foreach ($pasos as $paso)
-                <li>{{$paso->secuencia}}</li>
+                <li>{{ $paso->secuencia }}</li>
             @endforeach
         </ol>
 
