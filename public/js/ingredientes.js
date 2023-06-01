@@ -15,13 +15,22 @@ function addColumn(e) {
 
   let newCol = document.createElement('td')
   let newBtnAdd = document.createElement('button')
-  newBtnAdd.addEventListener('click', addColumn)
-  newBtnAdd.classList.add('btn', 'btn-info')
-  newBtnAdd.textContent = "Sumar"
+  newBtnAdd.classList.add('btn', 'btn-danger')
+  newBtnAdd.addEventListener('click', (e) =>{
+    delRow(e, fila)
+  })
+  newBtnAdd.textContent = "Quitar"
   newCol.appendChild(newBtnAdd)
   fila.appendChild(newCol)
   //TODO: añadir boton de eliminar a las columnas
   tabla.appendChild(fila)
+}
+
+function delRow(e, fila){
+  e.preventDefault()
+
+  fila.remove()
+
 }
 
 
@@ -52,9 +61,11 @@ function addColumnPasos(e) {
 
   let newCol = document.createElement('td')
   let newBtnAdd = document.createElement('button')
-  newBtnAdd.addEventListener('click', addColumnPasos)
-  newBtnAdd.classList.add('btn', 'btn-info')
-  newBtnAdd.textContent = "Sumar"
+  newBtnAdd.addEventListener('click', (e) =>{
+    delRow(e, fila)
+  })
+  newBtnAdd.classList.add('btn', 'btn-danger')
+  newBtnAdd.textContent = "Quitar"
   newCol.appendChild(newBtnAdd)
   fila.appendChild(newCol)
   //TODO: añadir boton de eliminar a las columnas

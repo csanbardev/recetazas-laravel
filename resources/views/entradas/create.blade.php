@@ -2,7 +2,7 @@
 @section('titulo', 'Recetazas | Añadir')
 
 @section('contenido')
-    <div class="container center">
+    <div class="container text-center">
 
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show">
@@ -42,13 +42,9 @@
                 @endisset
             </label>
             <br>
-            <label for="pasos">
-                <textarea class="form-control ckeditor" name="pasos" id="" cols="30" rows="10">
+            
 
-              </textarea>
-            </label>
-
-            <label for="categoria">
+            <label for="categoria">Selecciona una categoría:
                 <select name="categoria" id="" class="form-select">
                     <option value="{{ old('categoria') }}">Seleccionar categoría</option>
                     @foreach ($categorias as $categoria)
@@ -59,7 +55,7 @@
             <br>
 
             <h3>Introduce los ingredientes:</h3>
-            <table class="table table-bordered">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Cantidad</th>
@@ -79,22 +75,29 @@
                         <td>
                             <input name="ing[0][nombre]" type="text" placeholder="ingrediente">
                         </td>
-                        <td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
                             <button id="btn-add" class="btn btn-info">
                                 Sumar
                             </button>
                         </td>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
             <br>
 
 
             <h3>Introduce los pasos a seguir:</h3>
-            <table class="table table-bordered">
+            <table class="table table-bordered text-center">
                 <thead>
                     <tr>
                         <th>Descripción</th>
+                        <th>Imagen (opcional)</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody id="pasos">
@@ -106,13 +109,17 @@
                         <td>
                             <input name="paso[0][imagen]" class="form-control" type="file"id="">
                         </td>
-                        <td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
                             <button id="btn-add-paso" class="btn btn-info">
                                 Sumar
                             </button>
                         </td>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
 
             <br>
