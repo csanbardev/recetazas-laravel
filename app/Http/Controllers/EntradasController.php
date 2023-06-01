@@ -85,7 +85,7 @@ class EntradasController extends Controller
   public function store(Request $request)
   {
     $request->validate([
-      'titulo' => 'required|max:15',
+      'titulo' => 'required|max:30',
       'descripcion' => 'required|max:300',
       'fecha' => 'required|date',
       'imagen' => 'required',

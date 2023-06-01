@@ -28,17 +28,15 @@
       @foreach ($entradas as $dato) 
       
 
-        <div class="shadow-lg card col-lg-4 p-2" style="width:400px">
+        <a style="text-decoration-style: none; text-decoration-line: none; color: black;" href="{{route('entradas.show',$dato)}}" class="card col-lg-4 p-4 " style="width:400px">
           <img class="card-img-top" src={{'images/' . $dato->imagen}} alt="Card image">
           <div class="card-body">
             <h4 class="card-title">{{$dato->titulo}} </h4>
-            <p class="card-text">{{$dato->descripcion}} </p>
+            <p class="card-text"><?=$dato->descripcion ?> </p>
             <span class="badge badge-secondary">{{date("d-m-Y", strtotime($dato->fecha))}} </span>
           </div>
-          <div class="pt-4">
-            <a href="{{route('entradas.show',$dato)}}" class="btn btn-secondary">Detalle</a>
-          </div>
-        </div>
+          
+        </a>
 
       @endforeach
       

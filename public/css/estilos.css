@@ -1,3 +1,16 @@
-body{
+body {
   font-family: 'Poltawski Nowy', serif !important;
+}
+
+.card {
+  box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
+-webkit-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
+-moz-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
+transition: ease-in-out 700ms;
+}
+
+.card:hover{
+  box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
+-webkit-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
+-moz-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
 }
