@@ -28,6 +28,10 @@
         <ol>
             @foreach ($pasos as $paso)
                 <li>{{ $paso->secuencia }}</li>
+                @if($paso->imagen != null)
+                
+                    <img class="pb-4 pt-4" style="width: 35%" src="/images/{{ $paso->imagen }}" alt=""> 
+                @endif
             @endforeach
         </ol>
 

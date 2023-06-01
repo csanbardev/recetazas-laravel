@@ -104,6 +104,9 @@
                             <input type="hidden" name="paso[0][orden]" value="1">
                         </td>
                         <td>
+                            <input name="paso[0][imagen]" class="form-control" type="file"id="">
+                        </td>
+                        <td>
                             <button id="btn-add-paso" class="btn btn-info">
                                 Sumar
                             </button>

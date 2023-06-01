@@ -26,19 +26,26 @@ class PasosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Array $request, $idReceta)
+    public function store(array $request, $idReceta, $imagen = null)
     {
-        
+
         $paso = new Pasos();
+
+        $nombreImagen = null;
+        // controlo que haya una imagen
+        if ($imagen != null) {
+            $file = $imagen;
+            $destino = "images/";
+            $nombreImagen = time() . '-' . $imagen->getClientOriginalName();
+            $uploadSuccess = $imagen->move($destino, $nombreImagen);
+        }
 
         $paso->secuencia = $request['secuencia'];
         $paso->orden = $request['orden'];
         $paso->entrada_id = $idReceta;
+        $paso->imagen = $nombreImagen;
 
         $paso->save();
-        
-        
-        
     }
 
     /**

@@ -11,9 +11,10 @@ use App\Models\User;
 use App\Models\Pasos;
 use App\Models\Ingrediente;
 use App\Models\IngredienteReceta;
-
+use Barryvdh\Debugbar\Facades\Debugbar as FacadesDebugbar;
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DebugBar\DebugBar;
 
 class EntradasController extends Controller
 {
@@ -53,7 +54,7 @@ class EntradasController extends Controller
 
     $entradas = Entradas::orderBy('fecha', 'asc')->paginate(6);
 
-    
+
 
     return view('entradas.inicio')
       ->with('entradas', $entradas);
@@ -108,23 +109,30 @@ class EntradasController extends Controller
     $entrada->imagen = $nombreImagen;
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
-
-
     $entrada->save(); //salva todo
 
     // ahora inserto los pasos de la receta
     $pasos = new PasosController();
     $pasosTabla = $request->input('paso');
-    foreach($pasosTabla as $pas){
-      $pasos->store($pas, $entrada->id);
+
+    for ($i = 0; $i < count($pasosTabla); $i++) {
+      // si se ha insertado una imagen al paso, se la envía
+      if (isset($request->file('paso')[$i])) {
+        $pasos->store($pasosTabla[$i], $entrada->id, $request->file('paso')[$i]['imagen']);
+      }
+      $pasos->store($pasosTabla[$i], $entrada->id);
     }
+
+    //foreach ($pasosTabla as $pas) {
+    //  $pasos->store($pas, $entrada->id);
+    // }
 
     // ahora inserto los ingredientes de la receta
     $ingredientesReceta = new ControllersIngredienteReceta;
     $ingredientes = $request->input('ing');
 
-    foreach($ingredientes as $ing){
-     $ingredientesReceta->store($ing, $entrada->id);
+    foreach ($ingredientes as $ing) {
+      $ingredientesReceta->store($ing, $entrada->id);
     }
 
     // hago el log
@@ -149,12 +157,12 @@ class EntradasController extends Controller
     $categoria = Categorias::find($entradas->categoria_id);
     $pasos = Pasos::where('entrada_id', '=', $entradas->id)->orderBy('orden', 'asc')->get();
     $ingredientes = DB::table('ingrediente_receta')
-                      ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=','ingrediente.id')
-                      ->where('ingrediente_receta.entrada_id', '=', $entradas->id)
-                      ->get();
+      ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=', 'ingrediente.id')
+      ->where('ingrediente_receta.entrada_id', '=', $entradas->id)
+      ->get();
 
-    
-    
+
+
 
     return view('entradas.detalle', compact('entradas', 'usuario', 'categoria', 'pasos', 'ingredientes'));
   }
