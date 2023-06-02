@@ -3,16 +3,35 @@
 
 @section('contenido')
 
-
-    <div class="container mx-auto ">
-        <h1 class="text-center">{{ $entradas->titulo }}</h1>
-        
-        <!-- Descripcion breve-->
-        <div class="text-center">
-            <p><?= $entradas-> descripcion ?></p>
+    <div id="show-view">
+        <!-- BANNER -->
+        <div class="text-banner-container">
+            <div id="categories">
+                <span  class="text-center badge badge-info ">Tradicional</span>
+            </div>
+            <h1 class="text-center">{{ $entradas->titulo }}</h1>
+            <h3 class="text-center">Pequeño extracto de la receta a modo de subtitulo</h3>
+            <p id="autor" class="text-center">— {{$usuario->name}} —</p>
         </div>
-        
-            <img class="mx-auto d-block img-fluid pb-4" src="/images/{{ $entradas->imagen }}" alt="">
+        <img class="mx-auto d-block pb-4" src="/images/{{ $entradas->imagen }}" alt="">
+
+    </div>
+
+
+    <hr>
+
+
+    <div id="content" class="container mx-auto ">
+
+        <!-- Descripcion breve-->
+        <div id="recipe-description-container"  >
+            <?= $entradas->descripcion ?>
+        </div>
+        <hr>
+
+        <h3 class="text-center">Receta de {{$entradas->titulo}}</h3>
+        <hr>
+
         <h3>Ingredientes</h3>
 
 
@@ -25,9 +44,8 @@
         <ol>
             @foreach ($pasos as $paso)
                 <li>{{ $paso->secuencia }}</li>
-                @if($paso->imagen != null)
-                
-                    <img class="pb-4 pt-4" style="width: 35%" src="/images/{{ $paso->imagen }}" alt=""> 
+                @if ($paso->imagen != null)
+                    <img class="img-fluid mx-auto d-block rounded " src="/images/{{ $paso->imagen }}" alt="">
                 @endif
             @endforeach
         </ol>

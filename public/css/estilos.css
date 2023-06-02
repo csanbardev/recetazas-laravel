@@ -3,14 +3,111 @@ body {
 }
 
 .card {
-  box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
--webkit-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
--moz-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.52);
-transition: ease-in-out 700ms;
+  box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.52);
+  -webkit-box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.52);
+  -moz-box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.52);
+  transition: ease-in-out 700ms;
 }
 
-.card:hover{
-  box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
--webkit-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
--moz-box-shadow: 0px 1px 30px -4px rgba(0,0,0,0.37) inset;
+.card:hover {
+  box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.37) inset;
+  -webkit-box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.37) inset;
+  -moz-box-shadow: 0px 1px 30px -4px rgba(0, 0, 0, 0.37) inset;
+}
+
+
+/* STYLES FOR SHOW VIEW*/
+
+#show-view {
+  position: relative;
+}
+
+#show-view #categories {
+  display: flex;
+  gap: .3rem;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+#show-view .text-banner-container {
+  position: absolute;
+  top: 25%;
+  z-index: 2;
+  color: white;
+}
+
+#show-view .text-banner-container h1 {
+  font-size: 1.5rem;
+}
+
+#show-view .text-banner-container h3 {
+  font-size: 1.1rem;
+}
+
+#show-view img {
+  width: 100vw;
+  filter: brightness(70%);
+}
+
+/* CONTENTS*/
+
+
+#recipe-description-container p{
+  font-size: 1.1rem;
+}
+
+#recipe-description-container p:first-letter{
+  text-transform: uppercase !important;
+  font-size: 3rem;
+  float: left;
+  margin: .3rem;
+  font-weight: 700;
+}
+
+ol, ul{
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  margin:0;
+  padding:0;
+}
+ol li, ul li{
+  padding-left: .2rem;
+  margin-left: 1.3rem;
+}
+
+ol img{
+  padding: 1rem;
+}
+
+
+@media (min-width: 1200px) {
+  #show-view .text-banner-container {
+    top: 25%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  #show-view .text-banner-container h1 {
+    font-size: 5rem;
+  }
+
+  #show-view .text-banner-container h3 {
+    font-size: 1.7rem;
+  }
+
+  #autor{
+    padding-top: 1rem;
+    font-size: 1.3rem;
+  }
+
+  #categories span{
+    font-size: 1.3rem;
+  }
+
+  #content{
+    width: 30%;
+  }
 }
