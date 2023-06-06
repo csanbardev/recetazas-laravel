@@ -71,3 +71,4 @@ function addColumnPasos(e) {
   //TODO: añadir boton de eliminar a las columnas
   tablaPasos.appendChild(fila)
 }
+

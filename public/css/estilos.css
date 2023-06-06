@@ -1,7 +1,9 @@
 body {
+  position: relative;
   font-family: 'Poltawski Nowy', serif !important;
   scroll-behavior: smooth;
   background-color: lightgrey !important;
+  min-height: 100vh;
 }
 
 body a {
@@ -53,7 +55,7 @@ body a:hover {
 }
 
 .nav-link:hover {
-  color: rgb(214, 206, 206);
+  color: rgb(214, 206, 206) !important;
 }
 
 /* MAIN BANNER STYLES */
@@ -213,3 +215,34 @@ ol img {
     width: 30%;
   }
 }
+
+/* FOOTER STYLES */
+footer{
+  border-top: 1px solid black;
+  position: static;
+  bottom: 0;
+}
+
+#footer-icon{
+  cursor: pointer;
+  margin-left: 2rem;
+  width: 1.3rem;
+}
+
+#footer-social{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-icon{
+  width: 1.3rem;
+}
+
+@media (min-width: 1200px) {
+  .social-icon{
+    width: 2rem;
+  }
+
+}  

@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-sm navbar-dark" >
+    <nav class="navbar navbar-expand-sm navbar-dark">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{ url('/') }}">Inicio</a>
                 </li>
             </ul>
-            
+
             @guest
                 <ul class="navbar-nav">
                     <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Iniciar sesión</a></li>
@@ -66,13 +66,36 @@
 
     <footer class="page-footer font-small blue mt-4">
 
+        <div id="footer-social">
+            <a href="https://github.com/csanbardev">
+                <img src="{{asset('images/github.svg')}}" alt="" class="social-icon">
+            </a>
+            <a href="https://www.linkedin.com/in/cristian-sanchez-barba/">
+                <img src="{{asset('images/linkedin.svg')}}" alt="" class="social-icon">
+            </a>
+            <a href="https://twitter.com/CristianSBDev">
+                <img src="{{asset('images/twitter.svg')}}" alt="" class="social-icon">
+            </a>
+        </div>
+
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2022 Copyright:
-            <a href="/"> Recetazas.com</a>
+        <div class="footer-copyright text-center py-3">
+            Developed by <a href="https://csanbardev.netlify.app"> Cristian Sánchez</a>
+
+            <img id="footer-icon" src="{{ asset('images/up.svg') }}" alt="">
+
         </div>
         <!-- Copyright -->
 
     </footer>
+    <script type="text/javascript">
+        const btUp = document.querySelector('#footer-icon')
+
+        btUp.addEventListener('click', () => {
+            window.scrollTo(0, 0)
+        })
+    </script>
+
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
