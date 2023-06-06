@@ -34,8 +34,9 @@
     <div class="row">
 
         @foreach ($entradas as $dato)
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
             <a 
-                href="{{ route('entradas.show', $dato) }}" class="card col-lg-4 p-4" style="width:400px">
+                href="{{ route('entradas.show', $dato) }}" class="card p-4">
                 <img class="card-img-top" src={{ 'images/' . $dato->imagen }} alt="Card image">
                 <div class="card-body">
                     <h4 class="card-title">{{ $dato->titulo }} </h4>
@@ -44,6 +45,7 @@
                 </div>
 
             </a>
+        </div>
         @endforeach
 
 
@@ -54,7 +56,6 @@
     {{ $entradas->links() }}
     <br>
     <br>
-    <a class="bt" href="{{ url('/imprimir') }}">imprimir listado</a>
     </div>
 
 

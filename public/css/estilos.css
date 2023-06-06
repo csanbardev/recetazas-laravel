@@ -4,21 +4,27 @@ body {
   background-color: lightgrey !important;
 }
 
-body a{
-  text-decoration: none !important; 
+body a {
+  text-decoration: none !important;
   color: black;
 
 }
 
-body a:hover{
+body a:hover {
   color: black;
 }
 
 .card {
-  -webkit-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
-  -moz-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
-  box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+
   background: transparent !important;
+}
+
+@media (min-width: 1200px) {
+  .card {
+    -webkit-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+    box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+  }
 }
 
 .bt {
@@ -27,6 +33,27 @@ body a:hover{
   border: solid 2px black;
   padding: .6rem;
   font-weight: 700;
+}
+
+
+
+/* NAVBAR STYLES */
+.navbar {
+  position: absolute !important;
+  z-index: 8;
+  width: 100vw;
+}
+
+#collapsibleNavbar {
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: rgb(214, 206, 206);
 }
 
 /* MAIN BANNER STYLES */
