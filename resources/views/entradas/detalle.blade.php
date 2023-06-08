@@ -10,7 +10,7 @@
                 <span  class="text-center badge badge-info ">Tradicional</span>
             </div>
             <h1 class="text-center">{{ $entradas->titulo }}</h1>
-            <h3 class="text-center">Pequeño extracto de la receta a modo de subtitulo</h3>
+            <h3 class="text-center">{{$entradas->subtitulo}}</h3>
             <p id="autor" class="text-center">— {{$usuario->name}} —</p>
         </div>
         <img class="mx-auto d-block pb-4" src="/images/{{ $entradas->imagen }}" alt="">

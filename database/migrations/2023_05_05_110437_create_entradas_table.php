@@ -15,6 +15,8 @@ return new class extends Migration
           $table->id();
           $table->string('titulo', 30);
           $table->string('imagen', 100);
+          $table->string('subtitulo', 60);
+          $table->string('descripcion_breve', 120);
           $table->string('descripcion', 300);
           $table->date('fecha');
           $table->unsignedBigInteger('usuario_id');

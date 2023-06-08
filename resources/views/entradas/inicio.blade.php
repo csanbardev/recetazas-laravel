@@ -34,18 +34,18 @@
     <div class="row">
 
         @foreach ($entradas as $dato)
-        <div class="col-12 col-sm-12 col-md-6 col-lg-4 ">
+        <article class="col-12 col-sm-12 col-md-6 col-lg-4 ">
             <a 
                 href="{{ route('entradas.show', $dato) }}" class="card p-4">
                 <img class="card-img-top" src={{ 'images/' . $dato->imagen }} alt="Card image">
                 <div class="card-body">
                     <h4 class="card-title">{{ $dato->titulo }} </h4>
-                    <p class="card-text"><?= $dato->descripcion ?> </p>
+                    <p class="card-text"><?= $dato->descripcion_breve ?> </p>
                     <span class="badge badge-secondary">{{ date('d-m-Y', strtotime($dato->fecha)) }} </span>
                 </div>
 
             </a>
-        </div>
+        </article>
         @endforeach
 
 

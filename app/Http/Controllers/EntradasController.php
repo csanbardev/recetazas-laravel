@@ -86,7 +86,9 @@ class EntradasController extends Controller
   {
     $request->validate([
       'titulo' => 'required|max:30',
+      'subtitulo' => 'required|max:60',
       'descripcion' => 'required|max:300',
+      'descripcion_breve' => 'required|max:120',
       'fecha' => 'required|date',
       'imagen' => 'required',
       'categoria' => 'required',
@@ -109,6 +111,8 @@ class EntradasController extends Controller
     $entrada->imagen = $nombreImagen;
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
+    $entrada->subtitulo = $request->input('subtitulo');
+    $entrada->descripcion_breve = $request->input('descripcion_breve');
     $entrada->save(); //salva todo
 
     // ahora inserto los pasos de la receta
