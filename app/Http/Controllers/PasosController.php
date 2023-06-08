@@ -27,7 +27,13 @@ class PasosController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(array $request, $idReceta, $imagen = null)
-    {
+    {   
+        $req = new Request();
+        $req->replace($request);
+
+        $req->validate([
+            'secuencia' => 'required'
+        ]);
 
         $paso = new Pasos();
 

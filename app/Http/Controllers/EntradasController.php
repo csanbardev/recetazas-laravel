@@ -15,6 +15,8 @@ use Barryvdh\Debugbar\Facades\Debugbar as FacadesDebugbar;
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade\Pdf;
 use DebugBar\DebugBar;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class EntradasController extends Controller
 {
@@ -84,6 +86,8 @@ class EntradasController extends Controller
    */
   public function store(Request $request)
   {
+    $errores = [];
+
     $request->validate([
       'titulo' => 'required|max:30',
       'subtitulo' => 'required|max:60',
@@ -94,6 +98,40 @@ class EntradasController extends Controller
       'categoria' => 'required',
       'usuario' => 'required'
     ]);
+
+
+    $pasosTabla = $request->input('paso'); // tomo los pasos
+    $ingredientes = $request->input('ing'); // tomo los ingredientes
+
+    // valido los ingredientes
+    foreach ($ingredientes as $ingre) {
+
+
+      if (!is_numeric($ingre['cantidad'])) {
+        $errores['cantidad'] = "La cantidad debe ser un número";
+      }
+
+      if (strlen($ingre['nombre']) > 20) {
+        $errores['nombre'] = "El nombre del ingrediente es demasiado largo";
+      }
+
+      if (strlen($ingre['tipoCant']) > 6) {
+        $errores['nombre'] = "El tipo de cantidad es demasiado larga";
+      }
+    }
+
+    // valido los pasos
+    foreach ($pasosTabla as $paso) {
+
+      if ($paso['secuencia'] == "") {
+        $errores['secuencia'] = "Los pasos deben tener una descripción";
+      }
+    }
+
+    // si hay errores, lanzo la excepción
+    if (count($errores) > 0) {
+      throw ValidationException::withMessages($errores);
+    }
 
     $entrada = new Entradas();
 
@@ -117,7 +155,6 @@ class EntradasController extends Controller
 
     // ahora inserto los pasos de la receta
     $pasos = new PasosController();
-    $pasosTabla = $request->input('paso');
 
     for ($i = 0; $i < count($pasosTabla); $i++) {
       // si se ha insertado una imagen al paso, se la envía
@@ -127,13 +164,9 @@ class EntradasController extends Controller
       $pasos->store($pasosTabla[$i], $entrada->id);
     }
 
-    //foreach ($pasosTabla as $pas) {
-    //  $pasos->store($pas, $entrada->id);
-    // }
 
     // ahora inserto los ingredientes de la receta
     $ingredientesReceta = new ControllersIngredienteReceta;
-    $ingredientes = $request->input('ing');
 
     foreach ($ingredientes as $ing) {
       $ingredientesReceta->store($ing, $entrada->id);
