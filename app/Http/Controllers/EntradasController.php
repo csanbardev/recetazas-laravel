@@ -136,6 +136,10 @@ class EntradasController extends Controller
       if ($paso['secuencia'] == "") {
         $errores['secuencia'] = "Los pasos deben tener una descripción";
       }
+
+      if (strlen($paso['secuencia']) > 150) {
+        $errores['secuencia'] = "La descripcion del paso es muy larga";
+      }
     }
 
     // si hay errores, lanzo la excepción

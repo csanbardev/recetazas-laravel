@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('pasos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('secuencia', 2000);
+            $table->string('secuencia', 150);
             $table->unsignedBigInteger('entrada_id');
             $table->integer('orden');
             $table->string('imagen', 200)->nullable();
             $table->timestamps();
 
-          $table->foreign('entrada_id')->references('id')->on('entradas');
+          $table->foreign('entrada_id')->references('id')->on('entradas')->onDelete('cascade')->onUpdate('cascade');
 
         });
     }

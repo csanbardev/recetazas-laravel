@@ -7,7 +7,7 @@
         <!-- BANNER -->
         <div class="text-banner-container">
             <div id="categories">
-                <span  class="text-center badge badge-info ">Tradicional</span>
+                <span  class="text-center badge badge-info ">{{$categoria->nombre}}</span>
             </div>
             <h1 class="text-center">{{ $entradas->titulo }}</h1>
             <h3 class="text-center">{{$entradas->subtitulo}}</h3>

@@ -29,12 +29,7 @@
                 </li>
             </ul>
 
-            @guest
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Iniciar sesión</a></li>
-                    <li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>
-                </ul>
-            @endguest
+            
             @auth
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown ">
