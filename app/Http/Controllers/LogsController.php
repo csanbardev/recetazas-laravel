@@ -16,14 +16,6 @@ class LogsController extends Controller
   {
     $logs = Logs::orderBy('fecha', 'desc')->paginate(6);
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'listar logs',
-      auth()->user()->name
-    ];
-    $log->create($params);
 
     return view('admin.logs')
       ->with('logs', $logs);
@@ -46,14 +38,7 @@ class LogsController extends Controller
     $log = Logs::find($id);
     $log->delete();
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'eliminar log',
-      auth()->user()->name
-    ];
-    $log->create($params);
+ 
 
     return redirect()->action([LogsController::class, 'index']);
   }
@@ -62,14 +47,7 @@ class LogsController extends Controller
   public function pdf()
   {
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'imprimir logs',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
 
 
     $logs = Logs::all();

@@ -170,13 +170,6 @@ class EntradasController extends Controller
     // ahora inserto los pasos de la receta
     $pasos = new PasosController();
 
-    // for ($i = 0; $i < count($pasosTabla); $i++) {
-    //   // si se ha insertado una imagen al paso, se la envía
-    //   if (isset($request->file('paso')[$i])) {
-    //     $pasos->store($pasosTabla[$i], $entrada->id, $request->file('paso')[$i]['imagen']);
-    //   }
-    //   $pasos->store($pasosTabla[$i], $entrada->id);
-    // }
 
     foreach($pasosTabla as $key=>$pas){
       if(isset($request->file('paso')[$key])){
@@ -195,15 +188,7 @@ class EntradasController extends Controller
       $ingredientesReceta->store($ing, $entrada->id);
     }
 
-    // hago el log
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'crear entrada',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
 
     return redirect()->action([EntradasController::class, 'index']);
   }
@@ -274,14 +259,7 @@ class EntradasController extends Controller
 
 
     $entrada->save(); //salva todo
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'actualizar entrada',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
     return redirect()->action([UserController::class, 'index']);
   }
 
@@ -290,14 +268,7 @@ class EntradasController extends Controller
    */
   public function destroy($id)
   {
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'eliminar entrada',
-      auth()->user()->name
-    ];
-    $log->create($params);
+  
 
     $entrada = Entradas::find($id);
     $entrada->delete();

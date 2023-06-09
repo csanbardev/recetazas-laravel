@@ -33,14 +33,7 @@ class AdminController extends Controller
       $usuarios = User::where('name', 'LIKE', '%' . $search . '%')->orderBy('id', 'asc')->paginate(4);
     }
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'mostrar usuarios',
-      auth()->user()->name
-    ];
-    $log->create($params);
+   
 
     return view('admin.usuarios')
       ->with('usuarios', $usuarios);;
@@ -56,14 +49,6 @@ class AdminController extends Controller
     $usuarios = User::where('name', 'LIKE', '%' . $search . '%')->orderBy('id', 'asc')->paginate(4);
 
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'mostrar usuarios',
-      auth()->user()->name
-    ];
-    $log->create($params);
 
     return view('admin.usuarios')
       ->with('usuarios', $usuarios);;

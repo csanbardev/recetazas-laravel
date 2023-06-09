@@ -73,14 +73,7 @@ class UserController extends Controller
 
 
     $user->save(); //salva todo
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'actualizar usuario',
-      auth()->user()->name
-    ];
-    $log->create($params);
+    
 
     return redirect()->action([AdminController::class, 'usuarios']);
   }
@@ -93,14 +86,7 @@ class UserController extends Controller
     $user =  User::find($id);
     $user->delete();
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'eliminar usuario',
-      auth()->user()->name
-    ];
-    $log->create($params);
+
 
     return redirect()->action([AdminController::class, 'usuarios']);
   }
