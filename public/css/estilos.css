@@ -172,8 +172,8 @@ body a:hover {
   font-weight: 700;
 }
 
-ol,
-ul {
+#content ol,
+#content ul {
   display: flex;
   flex-direction: column;
   gap: .3rem;
@@ -181,14 +181,18 @@ ul {
   padding: 0;
 }
 
-ol li,
-ul li {
+#content ol li,
+#content ul li {
   padding-left: .2rem;
   margin-left: 1.3rem;
 }
 
-ol img {
+#content ol img {
   padding: 1rem;
+}
+
+#content h3 {
+  margin-top: 1.3rem;
 }
 
 

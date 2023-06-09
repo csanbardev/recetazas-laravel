@@ -156,12 +156,21 @@ class EntradasController extends Controller
     // ahora inserto los pasos de la receta
     $pasos = new PasosController();
 
-    for ($i = 0; $i < count($pasosTabla); $i++) {
-      // si se ha insertado una imagen al paso, se la envía
-      if (isset($request->file('paso')[$i])) {
-        $pasos->store($pasosTabla[$i], $entrada->id, $request->file('paso')[$i]['imagen']);
+    // for ($i = 0; $i < count($pasosTabla); $i++) {
+    //   // si se ha insertado una imagen al paso, se la envía
+    //   if (isset($request->file('paso')[$i])) {
+    //     $pasos->store($pasosTabla[$i], $entrada->id, $request->file('paso')[$i]['imagen']);
+    //   }
+    //   $pasos->store($pasosTabla[$i], $entrada->id);
+    // }
+
+    foreach($pasosTabla as $key=>$pas){
+      if(isset($request->file('paso')[$key])){
+        $pasos->store($pas, $entrada->id, $request->file('paso')[$key]['imagen']);
+
       }
-      $pasos->store($pasosTabla[$i], $entrada->id);
+      $pasos->store($pas, $entrada->id);
+
     }
 
 
