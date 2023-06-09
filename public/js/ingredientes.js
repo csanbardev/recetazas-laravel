@@ -36,7 +36,7 @@ btnAddPasos.addEventListener('click', (e) => {
 function addColumnPasos(e) {
   e.preventDefault()
   let fila = document.createElement('tr')
-  fila.id =`pas-${tablaPasos.rows.length++}`
+  fila.id = `pas-${tablaPasos.rows.length++}`
 
   let columnas = `
                     <tr>                  
@@ -63,28 +63,37 @@ const btDeletePas = document.querySelector('#btn-delete-pas')
 
 btDeleteIng.addEventListener('click', (e) => {
   e.preventDefault()
+  let noneChecked = true // controll if there's some input checked
 
   let elegidos = document.querySelectorAll('#ingredientes input[type=checkbox]')
 
   elegidos.forEach((elegido) => {
     if (elegido.checked) {
+      noneChecked = false
       let fila = document.querySelector(`#${elegido.value}`)
       console.log(elegido.value)
       fila.remove()
     }
   })
+
+  if (noneChecked)
+    alert("Selecciona antes uno para eliminar")
 })
 
 btDeletePas.addEventListener('click', (e) => {
   e.preventDefault()
+  let noneChecked = true // controll if there's some input checked
 
   let elegidos = document.querySelectorAll('#pasos input[type=checkbox]')
 
   elegidos.forEach((elegido) => {
     if (elegido.checked) {
+      noneChecked = false
       let fila = document.querySelector(`#${elegido.value}`)
-      console.log(elegido.value)
       fila.remove()
     }
   })
+
+  if (noneChecked)
+    alert("Selecciona antes uno para eliminar")
 })
