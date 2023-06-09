@@ -151,7 +151,7 @@ class EntradasController extends Controller
 
     if ($request->hasFile('imagen')) {
       $file = $request->file('imagen');
-      $destino = "images/";
+      $destino = "imagen/";
       $nombreImagen = time() . '-' . $file->getClientOriginalName();
       $uploadSuccess = $request->file('imagen')->move($destino, $nombreImagen);
     }
