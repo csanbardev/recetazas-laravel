@@ -17,14 +17,7 @@ class UserController extends Controller
   {
     $entradas = Entradas::where('usuario_id', auth()->user()->id)->latest('fecha')->paginate(6);
 
-    $log = new LogsController;
-    $params = [
-      date('y-m-d'),
-      date('H:i:s'),
-      'ver entradas user',
-      auth()->user()->name
-    ];
-    $log->create($params);
+
 
     return view('user.entradas')
       ->with('entradas', $entradas);
