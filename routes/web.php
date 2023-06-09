@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EntradasController;
+use App\Http\Controllers\IngredienteReceta;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LogsController;
@@ -27,6 +28,8 @@ Route::get('/entrada/{entradas}', [EntradasController::class, 'show'])->name('en
 
 Route::get('/create', [EntradasController::class, 'create'])->middleware('auth')->middleware('can:user');
 Route::post('/create', [EntradasController::class, 'store'])->middleware('auth')->middleware('can:user');
+
+Route::post('/ingredientereceta/create', [IngredienteReceta::class, 'store'])->middleware('auth')->middleware('can:user');
 
 Route::get('/entrada/{entradas}/edit', [EntradasController::class, 'edit'])->middleware('auth')->middleware('can:user');
 Route::put('/entrada/{entradas}/edit', [EntradasController::class, 'update'])->middleware('auth')->middleware('can:user');

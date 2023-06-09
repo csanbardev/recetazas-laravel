@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\IngredienteReceta as ControllersIngredienteReceta;
+use Illuminate\Support\Facades\DB;
 use App\Models\Entradas;
 use Illuminate\Http\Request;
 use App\Models\Categorias;
 use App\Models\User;
+use App\Models\Pasos;
+use App\Models\Ingrediente;
+use App\Models\IngredienteReceta;
+use Barryvdh\Debugbar\Facades\Debugbar as FacadesDebugbar;
 use Illuminate\Support\Facades\App;
 use Barryvdh\DomPDF\Facade\Pdf;
+use DebugBar\DebugBar;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class EntradasController extends Controller
 {
@@ -47,7 +56,7 @@ class EntradasController extends Controller
 
     $entradas = Entradas::orderBy('fecha', 'asc')->paginate(6);
 
-    
+
 
     return view('entradas.inicio')
       ->with('entradas', $entradas);
@@ -77,14 +86,66 @@ class EntradasController extends Controller
    */
   public function store(Request $request)
   {
+    $errores = [];
+
     $request->validate([
-      'titulo' => 'required|max:15',
+      'titulo' => 'required|max:30',
+      'subtitulo' => 'required|max:60',
       'descripcion' => 'required|max:300',
+      'descripcion_breve' => 'required|max:120',
       'fecha' => 'required|date',
       'imagen' => 'required',
       'categoria' => 'required',
       'usuario' => 'required'
     ]);
+
+
+    $pasosTabla = $request->input('paso'); // tomo los pasos
+    $ingredientes = $request->input('ing'); // tomo los ingredientes
+
+    if($pasosTabla == null){
+      throw ValidationException::withMessages(["Inserta al menos un paso"]);
+
+    }
+
+    if($ingredientes == null){
+      throw ValidationException::withMessages(["Inserta al menos un ingrediente"]);
+
+    }
+
+    // valido los ingredientes
+    foreach ($ingredientes as $ingre) {
+
+
+      if (!is_numeric($ingre['cantidad'])) {
+        $errores['cantidad'] = "La cantidad debe ser un número";
+      }
+
+      if (strlen($ingre['nombre']) > 20) {
+        $errores['nombre'] = "El nombre del ingrediente es demasiado largo";
+      }
+
+      if (strlen($ingre['tipoCant']) > 6) {
+        $errores['nombre'] = "El tipo de cantidad es demasiado larga";
+      }
+    }
+
+    // valido los pasos
+    foreach ($pasosTabla as $paso) {
+
+      if ($paso['secuencia'] == "") {
+        $errores['secuencia'] = "Los pasos deben tener una descripción";
+      }
+
+      if (strlen($paso['secuencia']) > 150) {
+        $errores['secuencia'] = "La descripcion del paso es muy larga";
+      }
+    }
+
+    // si hay errores, lanzo la excepción
+    if (count($errores) > 0) {
+      throw ValidationException::withMessages($errores);
+    }
 
     $entrada = new Entradas();
 
@@ -102,10 +163,39 @@ class EntradasController extends Controller
     $entrada->imagen = $nombreImagen;
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
-
-
+    $entrada->subtitulo = $request->input('subtitulo');
+    $entrada->descripcion_breve = $request->input('descripcion_breve');
     $entrada->save(); //salva todo
 
+    // ahora inserto los pasos de la receta
+    $pasos = new PasosController();
+
+    // for ($i = 0; $i < count($pasosTabla); $i++) {
+    //   // si se ha insertado una imagen al paso, se la envía
+    //   if (isset($request->file('paso')[$i])) {
+    //     $pasos->store($pasosTabla[$i], $entrada->id, $request->file('paso')[$i]['imagen']);
+    //   }
+    //   $pasos->store($pasosTabla[$i], $entrada->id);
+    // }
+
+    foreach($pasosTabla as $key=>$pas){
+      if(isset($request->file('paso')[$key])){
+        $pasos->store($pas, $entrada->id, $request->file('paso')[$key]['imagen']);
+
+      }
+      $pasos->store($pas, $entrada->id);
+
+    }
+
+
+    // ahora inserto los ingredientes de la receta
+    $ingredientesReceta = new ControllersIngredienteReceta;
+
+    foreach ($ingredientes as $ing) {
+      $ingredientesReceta->store($ing, $entrada->id);
+    }
+
+    // hago el log
     $log = new LogsController;
     $params = [
       date('y-m-d'),
@@ -125,9 +215,16 @@ class EntradasController extends Controller
   {
     $usuario = User::find($entradas->usuario_id);
     $categoria = Categorias::find($entradas->categoria_id);
-    
+    $pasos = Pasos::where('entrada_id', '=', $entradas->id)->orderBy('orden', 'asc')->get();
+    $ingredientes = DB::table('ingrediente_receta')
+      ->join('ingrediente', 'ingrediente_receta.ingrediente_id', '=', 'ingrediente.id')
+      ->where('ingrediente_receta.entrada_id', '=', $entradas->id)
+      ->get();
 
-    return view('entradas.detalle', compact('entradas', 'usuario', 'categoria'));
+
+
+
+    return view('entradas.detalle', compact('entradas', 'usuario', 'categoria', 'pasos', 'ingredientes'));
   }
 
   /**

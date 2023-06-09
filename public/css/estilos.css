@@ -1,0 +1,264 @@
+body {
+  position: relative;
+  font-family: 'Poltawski Nowy', serif !important;
+  scroll-behavior: smooth;
+  background-color: lightgrey !important;
+  min-height: 100vh;
+}
+
+body a {
+  text-decoration: none !important;
+  color: black;
+
+}
+
+body a:hover {
+  color: black;
+}
+
+.card {
+
+  background: transparent !important;
+}
+
+@media (min-width: 1200px) {
+  .card {
+    -webkit-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+    -moz-box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+    box-shadow: -8px -3px 9px 0px rgba(0, 0, 0, 0.36);
+  }
+}
+
+.bt {
+  cursor: pointer;
+  background: transparent;
+  border: solid 2px black;
+  padding: .6rem;
+  font-weight: 700;
+}
+
+
+
+/* NAVBAR STYLES */
+.navbar {
+  background: rgb(33, 32, 32);
+  z-index: 8;
+  width: 100vw;
+}
+
+.mainnav{
+  position: absolute !important;
+  background: transparent !important;
+}
+
+#collapsibleNavbar {
+  justify-content: space-between;
+}
+
+.nav-link {
+  color: white !important;
+}
+
+.nav-link:hover {
+  color: rgb(214, 206, 206) !important;
+}
+
+/* MAIN BANNER STYLES */
+
+#banner {
+  position: relative;
+}
+
+#img-banner-container {
+  filter: brightness(50%);
+
+}
+
+#text-banner-container {
+
+  color: white;
+  text-align: center;
+  position: absolute;
+  top: 25%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#text-banner-container h2 {
+  font-family: 'Abril Fatface', cursive;
+
+}
+
+
+
+@media (min-width: 1200px) {
+  #text-banner-container h2 {
+    font-size: 6rem;
+  }
+
+  #text-banner-container p {
+    font-size: 1.5rem;
+  }
+
+}
+
+/* MAIN BODY CONTENT STYLES */
+
+.row article{
+  margin-top: 1.5rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 700;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.title::before {
+  content: "";
+  border: 1px solid black;
+  margin-right: 1rem;
+}
+
+@media (min-width: 1200px) {
+  .title {
+    font-size: 3rem;
+  }
+}
+
+
+/* STYLES FOR SHOW VIEW*/
+
+#show-view {
+  position: relative;
+}
+
+#show-view #categories {
+  display: flex;
+  gap: .3rem;
+  justify-content: center;
+  padding-bottom: 1rem;
+}
+
+#show-view .text-banner-container {
+  position: absolute;
+  top: 25%;
+  z-index: 2;
+  color: white;
+}
+
+#show-view .text-banner-container h1 {
+  font-size: 1.5rem;
+}
+
+#show-view .text-banner-container h3 {
+  font-size: 1.1rem;
+}
+
+#show-view img {
+  width: 100vw;
+  filter: brightness(70%);
+}
+
+/* CONTENTS*/
+
+
+#recipe-description-container p {
+  font-size: 1.1rem;
+}
+
+#recipe-description-container p:first-letter {
+  text-transform: uppercase !important;
+  font-size: 3rem;
+  float: left;
+  margin: .3rem;
+  font-weight: 700;
+}
+
+#content ol,
+#content ul {
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+  margin: 0;
+  padding: 0;
+}
+
+#content ol li,
+#content ul li {
+  padding-left: .2rem;
+  margin-left: 1.3rem;
+}
+
+#content ol img {
+  padding: 1rem;
+}
+
+#content h3 {
+  margin-top: 1.3rem;
+}
+
+
+@media (min-width: 1200px) {
+  #show-view .text-banner-container {
+    top: 25%;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  #show-view .text-banner-container h1 {
+    font-size: 5rem;
+  }
+
+  #show-view .text-banner-container h3 {
+    font-size: 1.7rem;
+  }
+
+  #autor {
+    padding-top: 1rem;
+    font-size: 1.3rem;
+  }
+
+  #categories span {
+    font-size: 1.3rem;
+  }
+
+  #content {
+    width: 30%;
+  }
+}
+
+/* FOOTER STYLES */
+footer{
+  border-top: 1px solid black;
+  position: static;
+  bottom: 0;
+}
+
+#footer-icon{
+  cursor: pointer;
+  margin-left: 2rem;
+  width: 1.3rem;
+}
+
+#footer-social{
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-icon{
+  width: 1.3rem;
+}
+
+@media (min-width: 1200px) {
+  .social-icon{
+    width: 2rem;
+  }
+
+}  
