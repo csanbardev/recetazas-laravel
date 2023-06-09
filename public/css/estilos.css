@@ -41,9 +41,14 @@ body a:hover {
 
 /* NAVBAR STYLES */
 .navbar {
-  position: absolute !important;
+  background: rgb(33, 32, 32);
   z-index: 8;
   width: 100vw;
+}
+
+.mainnav{
+  position: absolute !important;
+  background: transparent !important;
 }
 
 #collapsibleNavbar {

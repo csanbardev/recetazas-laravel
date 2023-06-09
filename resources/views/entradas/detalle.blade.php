@@ -1,4 +1,4 @@
-@extends('layout/template')
+@extends('layout/templatemain')
 @section('titulo', 'Recetazas | Detalle')
 
 @section('contenido')
