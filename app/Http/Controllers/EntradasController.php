@@ -103,6 +103,16 @@ class EntradasController extends Controller
     $pasosTabla = $request->input('paso'); // tomo los pasos
     $ingredientes = $request->input('ing'); // tomo los ingredientes
 
+    if($pasosTabla == null){
+      throw ValidationException::withMessages(["Inserta al menos un paso"]);
+
+    }
+
+    if($ingredientes == null){
+      throw ValidationException::withMessages(["Inserta al menos un ingrediente"]);
+
+    }
+
     // valido los ingredientes
     foreach ($ingredientes as $ingre) {
 
