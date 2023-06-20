@@ -94,7 +94,6 @@ class EntradasController extends Controller
       'descripcion' => 'required|max:300',
       'descripcion_breve' => 'required|max:120',
       'fecha' => 'required|date',
-      'imagen' => 'required',
       'categoria' => 'required',
       'usuario' => 'required'
     ]);
@@ -160,7 +159,7 @@ class EntradasController extends Controller
     $entrada->titulo = $request->input('titulo');
     $entrada->descripcion = $request->input('descripcion');
     $entrada->fecha = $request->input('fecha');
-    $entrada->imagen = $nombreImagen;
+    $entrada->imagen = "none.jpg";
     $entrada->categoria_id = $request->input('categoria');
     $entrada->usuario_id = $request->input('usuario');
     $entrada->subtitulo = $request->input('subtitulo');

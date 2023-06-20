@@ -47,7 +47,7 @@
             </label>
             <br>
             <label for="imagen">Inserta la imagen
-                <input name="imagen" class="form-control" type="file" name="imagen" id="" required>
+                <input name="imagen" class="form-control" type="file" name="imagen" id="">
                 @isset($parametros['errores']['imagen'])
                     <div class="alert alert-danger">{{ $parametros['errores']['imagen'] }}</div>
                 @endisset
