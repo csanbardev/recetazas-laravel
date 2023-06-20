@@ -25,5 +25,11 @@ class CategoriasSeeder extends Seeder
         Categorias::create([
           "nombre" => "Pescado"
         ]);
+        Categorias::create([
+          "nombre" => "Verdura"
+        ]);
+        Categorias::create([
+          "nombre" => "Ensalada"
+        ]);
     }
 }
