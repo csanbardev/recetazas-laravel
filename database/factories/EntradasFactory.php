@@ -24,6 +24,8 @@ class EntradasFactory extends Factory
 
         return [
             'titulo' => $titulo,
+            'subtitulo' => 'subtitulo',
+            'descripcion_breve' => 'fsefsefsefwse',
             'descripcion' => $this->faker->text(100),
             'imagen' => $this->faker->numberBetween($min = 1, $max = 5) .'.jpg',
             'usuario_id' => User::all()->random()->id,

@@ -30,7 +30,13 @@
                 </li>
             </ul>
 
-            
+            @guest
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Iniciar sesión</a></li>
+                    <!--<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Registrarse</a></li>-->
+                </ul>
+            @endguest
+
             @auth
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown ">
@@ -64,13 +70,13 @@
 
         <div id="footer-social">
             <a href="https://github.com/csanbardev">
-                <img src="{{asset('images/github.svg')}}" alt="" class="social-icon">
+                <img src="{{ asset('images/github.svg') }}" alt="" class="social-icon">
             </a>
             <a href="https://www.linkedin.com/in/cristian-sanchez-barba/">
-                <img src="{{asset('images/linkedin.svg')}}" alt="" class="social-icon">
+                <img src="{{ asset('images/linkedin.svg') }}" alt="" class="social-icon">
             </a>
             <a href="https://twitter.com/CristianSBDev">
-                <img src="{{asset('images/twitter.svg')}}" alt="" class="social-icon">
+                <img src="{{ asset('images/twitter.svg') }}" alt="" class="social-icon">
             </a>
         </div>
 
